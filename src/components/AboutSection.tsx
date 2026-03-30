@@ -1,120 +1,76 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function AboutSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const elements =
-      sectionRef.current?.querySelectorAll(".fade-target") ?? [];
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      id="about"
-      className="py-20 sm:py-28 bg-dark-secondary relative overflow-hidden"
-    >
-      {/* Decorative element */}
-      <div className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none">
-        <Image
-          src="/images/pink-poppy.png"
-          alt=""
-          fill
-          className="object-contain"
-          aria-hidden="true"
-        />
-      </div>
+    <section id="about" className="bg-white">
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        {/* Left column: photo */}
+        <div className="relative min-h-[600px]">
+          <Image
+            src="/images/about-sheeraz.jpg"
+            alt="Sheeraz Hasan"
+            fill
+            className="object-cover"
+            style={{ objectPosition: "58% 26%" }}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            unoptimized
+          />
+        </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
-          <div className="fade-target relative order-2 lg:order-1">
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <Image
-                src="/images/about-sheeraz.jpg"
-                alt="Sheeraz Hasan"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              {/* Image border accent */}
-              <div className="absolute -inset-2 border border-gold/20 -z-10" />
-            </div>
-          </div>
+        {/* Right column: bio */}
+        <div className="flex flex-col justify-center px-10 py-14 lg:px-16 lg:py-20">
+          <h2
+            className="font-[family-name:var(--font-barlow)] font-bold text-[#01060D] mb-8"
+            style={{ fontSize: "clamp(2rem, 3vw, 2.5rem)" }}
+          >
+            About Sheeraz Hasan
+          </h2>
 
-          {/* Content */}
-          <div className="order-1 lg:order-2">
-            <p className="fade-target text-sm uppercase tracking-[0.3em] text-muted mb-4">
-              About
+          <div className="font-[family-name:var(--font-inter)] text-[#01060D] text-base leading-relaxed space-y-5">
+            <p>
+              Sheeraz Hasan is a global fame strategist and media operator who
+              builds visibility at scale. He is referred to as the &ldquo;#1 FAME
+              and AI Strategist in the World,&rdquo; working at the intersection of
+              celebrity, technology, capital, and narrative control. He brings a
+              combination of 25 years of hands-on experience and the latest
+              artificial intelligence tools to amplify celebrities, influencers,
+              CEOs, and companies. When public figures, brands, or institutions
+              require rapid global attention, he is engaged to design and execute
+              it.
             </p>
-            <h2 className="fade-target delay-100 text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight mb-2">
-              Sheeraz Hasan
-            </h2>
-            <p className="fade-target delay-200 text-gold uppercase tracking-widest text-sm mb-8">
-              Strategist
+            <p>
+              He has worked with figures such as Kim Kardashian, Logan Paul,
+              Zendaya, Jennifer Lopez, Miley Cyrus, Paris Hilton, Justin Bieber,
+              Priyanka Chopra, Jake Paul, Lindsay Lohan, Lele Pons, and the Nelk
+              Boys at the beginning of their careers, polishing their public
+              presence and helping build them from the ground up through strategy,
+              coaching, training, and media positioning. He was featured on
+              ABC&apos;s 20/20 as Kim Kardashian&apos;s media strategist, and his
+              work has appeared across major platforms including Netflix, Hulu,
+              BBC, HBO, YouTube Originals, and other international television
+              networks.
             </p>
-
-            <div className="fade-target delay-300 space-y-6 text-white/60 leading-relaxed">
-              <p>
-                With over 25 years in the entertainment and media industry,
-                Sheeraz Hasan is the go-to strategist for celebrities,
-                entrepreneurs, and global brands seeking unprecedented media
-                coverage and attention.
-              </p>
-              <p>
-                From orchestrating viral moments to managing full-scale media
-                campaigns, Sheeraz has worked with the biggest names in
-                Hollywood, Bollywood, and beyond. His client roster includes
-                A-list celebrities, Fortune 500 companies, and emerging
-                tech startups.
-              </p>
-              <p>
-                Based between Hollywood and Dubai, Sheeraz bridges the gap
-                between East and West, delivering global media strategies that
-                transcend borders and cultures.
-              </p>
-            </div>
-
-            <div className="fade-target delay-400 mt-10 flex flex-wrap gap-4">
-              <a
-                href="https://sheeraz.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 border border-gold text-gold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition-all duration-300 btn-glow"
-              >
-                Sheeraz.com
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center px-6 py-3 border border-white/20 text-white text-sm uppercase tracking-widest hover:border-white hover:bg-white/5 transition-all duration-300"
-              >
-                Get in touch
-              </a>
-            </div>
-
-            {/* Large decorative name */}
-            <div className="fade-target delay-500 mt-12">
-              <p className="text-5xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-white/[0.03] select-none">
-                Sheeraz Hasan
-              </p>
-            </div>
+            <p>
+              He is also the founder of Hollywood.TV, one of the largest celebrity
+              content providers globally and a major paparazzi and breaking-news
+              network supplying real-time celebrity coverage to outlets including
+              TMZ, People, Daily Mail, CNN, Fox News, Reuters, and other major
+              media organizations. Through this infrastructure, his media systems
+              reach billions of viewers worldwide.
+            </p>
+            <p>
+              Sheeraz has built large-scale media and amplification systems with
+              global distribution. He is the founder of Hollywood.ai and
+              Bollywood.ai, initiatives focused on the next phase of
+              entertainment, talent, and influence creation through artificial
+              intelligence.
+            </p>
+            <p>
+              He has been recognized by U.S. government agencies and
+              international institutions for contributions across media,
+              technology, and influence strategy. His work operates in a category
+              where visibility and valuation are directly linked.
+            </p>
           </div>
         </div>
       </div>

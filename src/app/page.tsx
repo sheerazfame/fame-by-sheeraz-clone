@@ -1,11 +1,14 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import AsSeenOn from "@/components/AsSeenOn";
+import QuoteSection from "@/components/QuoteSection";
 import ServicesSection from "@/components/ServicesSection";
-import SpecializedServices from "@/components/SpecializedServices";
-import CaseStudies from "@/components/CaseStudies";
+import AsSeenOn from "@/components/AsSeenOn";
+import VideoCarousel from "@/components/VideoCarousel";
+import CelebrityPortraits from "@/components/CelebrityPortraits";
+import PhotoCarousel from "@/components/PhotoCarousel";
 import AboutSection from "@/components/AboutSection";
-import ContactSection from "@/components/ContactSection";
+import CaseStudies from "@/components/CaseStudies";
+import InvestorsSection from "@/components/InvestorsSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -14,12 +17,15 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <AsSeenOn />
+        <QuoteSection />
         <ServicesSection />
-        <SpecializedServices />
-        <CaseStudies />
+        <AsSeenOn />
+        <VideoCarousel />
+        <CelebrityPortraits />
+        <PhotoCarousel />
         <AboutSection />
-        <ContactSection />
+        <CaseStudies />
+        <InvestorsSection />
       </main>
       <Footer />
     </>

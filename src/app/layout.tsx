@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Barlow, Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const barlow = Barlow({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
+  variable: "--font-barlow",
+});
+
+const inter = Inter({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "Fame by Sheeraz | Celebrity PR & Media Strategy",
+  title: "Fame by Sheeraz | #1 Fame & AI Strategist",
   description:
-    "Over 25 years in the business of attention. Celebrity PR, media strategy, and amplification by Sheeraz Hasan.",
+    "Sheeraz Hasan — #1 Fame & AI Strategist in the World. Over 25 years in the business of attention. Celebrity PR, media strategy, and amplification.",
   icons: {
-    icon: "/images/favicon.png",
+    icon: "/images/logo.png",
   },
 };
 
@@ -22,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="min-h-screen bg-black text-white font-sans">
+    <html lang="en" className={`${barlow.variable} ${inter.variable} antialiased`}>
+      <body className="min-h-screen bg-[#01060D] text-[#EEEEEE] overflow-x-hidden">
         {children}
       </body>
     </html>

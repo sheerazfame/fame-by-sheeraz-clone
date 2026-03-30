@@ -1,163 +1,169 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-const CALENDLY_URL =
-  "https://calendly.com/free15-mindiscoverycall/fameauditcall";
+const WHATSAPP_URL = "https://wa.me/13109251667";
 
-const services = [
+interface ServiceCard {
+  image: string;
+  title: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+const row1: ServiceCard[] = [
   {
-    icon: "/images/icon-celebrities.png",
-    title: "CELEBRITIES & INFLUENCERS",
+    image: "/images/service-ai-media.png",
+    title: "AI, MEDIA STRATEGY & AMPLIFICATION",
     description:
-      "From social media influencers and KOLs to the biggest stars in the world.",
+      "Money follows FAME. Become unmissable as a business, entrepreneur or talent.",
+    ctaLabel: "CONTACT US",
+    ctaHref: "/contact",
   },
   {
-    icon: "/images/icon-press-media.png",
-    title: "PRESS & MEDIA SOLUTIONS",
-    description: "Full media machine for all your PR needs.",
-  },
-  {
-    icon: "/images/icon-crypto.png",
-    title: "CRYPTO / WEB3",
-    description:
-      "Strategic media and celebrity partnerships for crypto and Web3 projects.",
-  },
-  {
-    icon: "/images/icon-google.png",
+    image: "/images/service-online-ai.png",
     title: "ONLINE & AI PRESENCE",
     description:
       "Become instantly trusted and verified whenever anyone searches your name.",
+    ctaLabel: "LEARN MORE",
+    ctaHref: "/services/online-ai-presence",
   },
   {
-    icon: "/images/icon-activations.png",
+    image: "/images/service-networking.png",
     title: "NETWORKING & FUNDRAISING",
     description:
-      "High-level introductions and fundraising strategy for visionary founders.",
+      "We can help connect the dots with the people that can change the game for your business, career or project.",
+    ctaLabel: "CONTACT US",
+    ctaHref: "/contact",
   },
 ];
 
-const subBrands = [
-  { name: "Hollywood.AI", src: "/images/logo-hollywoodai.png" },
-  { name: "Bollywood.AI", src: "/images/logo-bollywoodai.png" },
-  { name: "Fame by Sheeraz Hollywood Hills", src: "/images/logo-fame-hills.png" },
+const row2: ServiceCard[] = [
+  {
+    image: "/images/service-celebrities.png",
+    title: "CELEBRITIES & INFLUENCERS",
+    description:
+      "From social media influencers and KOLs to the biggest stars in the world.",
+    ctaLabel: "LEARN MORE",
+    ctaHref: "/services/celebrities-influencers",
+  },
+  {
+    image: "/images/service-press.png",
+    title: "PRESS & MEDIA SOLUTIONS",
+    description: "Full media machine for all your PR needs.",
+    ctaLabel: "LEARN MORE",
+    ctaHref: "/services/press-media",
+  },
+  {
+    image: "/images/service-crypto.png",
+    title: "CRYPTO / WEB3",
+    description:
+      "Creating FOMO around your project and helping you get listed in the biggest crypto exchanges.",
+    ctaLabel: "LEARN MORE",
+    ctaHref: "/services/crypto-web3",
+  },
 ];
 
+function WhatsAppIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="white"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm4.82 13.293c-.198.561-1.163 1.074-1.593 1.122-.385.043-.868.06-1.397-.088-.322-.094-.736-.221-1.265-.433-2.216-.862-3.66-3.094-3.77-3.238-.11-.143-.9-1.198-.9-2.285 0-1.087.57-1.621.77-1.843.2-.222.438-.278.583-.278.145 0 .29.001.416.007.134.006.313-.051.49.374.182.436.618 1.51.672 1.62.055.11.09.237.017.38-.072.143-.109.232-.217.357-.11.126-.23.281-.329.378-.11.108-.223.226-.096.442.127.217.564.93 1.21 1.508.83.74 1.53.968 1.748 1.076.217.11.344.092.471-.055.127-.148.543-.635.687-.852.144-.217.288-.181.486-.109.198.072 1.258.594 1.474.703.217.11.36.163.413.253.054.09.054.523-.144 1.084z" />
+    </svg>
+  );
+}
+
+function ServiceCardItem({ card }: { card: ServiceCard }) {
+  return (
+    <div className="flex flex-col rounded-xl overflow-hidden bg-[#060c18] border border-white/10 hover:border-[#F14312]/40 transition-colors duration-300">
+      {/* Card image */}
+      <div className="relative w-full aspect-[3/2]">
+        <Image
+          src={card.image}
+          alt={card.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </div>
+
+      {/* Card body */}
+      <div className="flex flex-col flex-1 gap-3 p-5">
+        <h3
+          className="font-[family-name:var(--font-barlow)] font-extrabold italic text-[#EEEEEE] leading-tight"
+          style={{ fontSize: "clamp(16px, 1.4vw, 24px)" }}
+        >
+          {card.title}
+        </h3>
+
+        <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE]/60 text-sm leading-relaxed flex-1">
+          {card.description}
+        </p>
+
+        {/* Button row */}
+        <div className="flex items-center gap-3 pt-1">
+          <Link
+            href={card.ctaHref}
+            className="btn-outline text-xs tracking-widest uppercase py-2 px-5 flex-shrink-0"
+          >
+            {card.ctaLabel}&nbsp;&rarr;
+          </Link>
+
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contact via WhatsApp"
+            className="btn-whatsapp flex-shrink-0"
+            style={{ width: 40, height: 40 }}
+          >
+            <WhatsAppIcon />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up");
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-
-    const elements =
-      sectionRef.current?.querySelectorAll(".fade-target") ?? [];
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="services"
-      className="py-20 sm:py-28 bg-black relative"
+      className="bg-[#01060D] border-t border-[#F14312]/30 py-20 sm:py-28"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="fade-target text-sm uppercase tracking-[0.3em] text-muted mb-4">
-            What we do
+        {/* Section header */}
+        <div className="mb-12 sm:mb-16">
+          <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE]/50 text-xs uppercase tracking-[0.35em] mb-4">
+            Specialized Services
           </p>
-          <h2 className="fade-target delay-100 text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight">
-            AI, Media Strategy{" "}
-            <span className="text-gold-gradient">&amp; Amplification</span>
+          <h2
+            className="font-[family-name:var(--font-barlow)] font-black italic uppercase text-[#F14312] leading-none"
+            style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
+          >
+            Over 25 Years in the Business of Attention
           </h2>
-          <p className="fade-target delay-200 mt-6 text-white/60 max-w-2xl mx-auto text-lg">
-            We combine cutting-edge AI technology with decades of media
-            expertise to amplify your brand on a global scale.
-          </p>
         </div>
 
-        {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {services.map((service, index) => (
-            <div
-              key={service.title}
-              className={`fade-target delay-${(index + 1) * 100} group relative bg-dark-tertiary border border-white/5 p-8 hover:border-gold/30 transition-all duration-500 hover:-translate-y-1`}
-            >
-              {/* Icon */}
-              <div className="w-14 h-14 mb-6 relative">
-                <Image
-                  src={service.icon}
-                  alt={service.title}
-                  width={56}
-                  height={56}
-                  className="object-contain"
-                />
-              </div>
-
-              {/* Content */}
-              <h3 className="text-base font-semibold uppercase tracking-wider mb-3 group-hover:text-gold transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-6">
-                {service.description}
-              </p>
-
-              {/* CTA */}
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-xs uppercase tracking-widest text-gold hover:text-gold-light transition-colors group/link"
-              >
-                LET&apos;S CHAT
-                <svg
-                  className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </a>
-
-              {/* Hover glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br from-gold/5 to-transparent" />
-            </div>
+        {/* Row 1 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          {row1.map((card) => (
+            <ServiceCardItem key={card.title} card={card} />
           ))}
         </div>
 
-        {/* Sub-brand Logos */}
-        <div className="fade-target flex flex-wrap items-center justify-center gap-8 sm:gap-12 pt-8 border-t border-white/5">
-          {subBrands.map((brand) => (
-            <div
-              key={brand.name}
-              className="opacity-40 hover:opacity-80 transition-opacity duration-300"
-            >
-              <Image
-                src={brand.src}
-                alt={brand.name}
-                width={150}
-                height={50}
-                className="h-8 sm:h-10 w-auto object-contain"
-              />
-            </div>
+        {/* Row 2 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {row2.map((card) => (
+            <ServiceCardItem key={card.title} card={card} />
           ))}
         </div>
       </div>
