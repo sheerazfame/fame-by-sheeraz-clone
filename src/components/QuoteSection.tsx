@@ -1,36 +1,91 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, inView };
+}
+
 export default function QuoteSection() {
+  const quote = useInView(0.15);
+  const photo = useInView(0.1);
+
   return (
     <section className="bg-white text-[#01060D]">
-      {/* Quote text */}
-      <div className="max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
-        <blockquote
-          className="font-[family-name:var(--font-barlow)] font-extrabold italic leading-snug"
-          style={{ fontSize: "clamp(20px, 2.5vw, 34px)" }}
+      {/* Quote text - animate in on scroll */}
+      <div
+        ref={quote.ref}
+        className="max-w-[1200px] mx-auto px-6 py-20 text-center"
+        style={{
+          opacity: quote.inView ? 1 : 0,
+          transform: quote.inView ? "translateY(0)" : "translateY(40px)",
+          transition: "opacity 0.8s ease-out, transform 0.8s ease-out",
+        }}
+      >
+        <h2
+          className="font-[family-name:var(--font-barlow)] font-black italic leading-[1.15]"
+          style={{ fontSize: "clamp(22px, 2.6vw, 36px)" }}
         >
           What do Kim Kardashian, Logan Paul, and Zendaya have in common?
           Just ask Sheeraz Hasan, the self-made media mogul who turned them all
           into the world&apos;s most famous celebrities. In other words,
           he&apos;s the man who can make just about anyone famous.
-        </blockquote>
+        </h2>
       </div>
 
-      {/* Sheeraz photo — centered, bleeds into dark section below */}
-      <div className="flex justify-center pb-0">
-        <div className="relative w-[280px] h-[420px]">
-          <Image
-            src="/images/quote-sheeraz.png"
-            alt="Sheeraz Hasan"
-            fill
-            className="object-contain object-bottom"
-            sizes="280px"
-          />
-        </div>
+      {/* Sheeraz cutout photo with animate-in */}
+      <div
+        ref={photo.ref}
+        className="relative mx-auto pointer-events-none"
+        style={{
+          width: "clamp(280px, 36vw, 557px)",
+          aspectRatio: "557/835",
+          opacity: photo.inView ? 1 : 0,
+          transform: photo.inView ? "translateY(0)" : "translateY(40px)",
+          transition:
+            "opacity 0.8s ease-out 0.15s, transform 0.8s ease-out 0.15s",
+        }}
+      >
+        <Image
+          src="/images/quote-sheeraz-cutout.png"
+          alt="Sheeraz Hasan"
+          fill
+          className="object-contain object-bottom"
+          sizes="(max-width: 768px) 60vw, 36vw"
+          unoptimized
+        />
       </div>
 
-      {/* Dark transition strip */}
-      <div className="w-full h-16 bg-gradient-to-b from-white to-[#01060D]" />
+      {/* Dark gradient transition to next section */}
+      <div
+        className="w-full h-24"
+        style={{
+          background:
+            "linear-gradient(to bottom, white 0%, #01060D 100%)",
+        }}
+      />
     </section>
   );
 }
