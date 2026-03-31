@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Barlow, Inter } from "next/font/google";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import FloatingCTAs from "@/components/FloatingCTAs";
 import "./globals.css";
 
 const barlow = Barlow({
@@ -32,7 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${barlow.variable} ${inter.variable} antialiased`}>
       <body className="min-h-screen bg-[#01060D] text-[#EEEEEE] overflow-x-hidden">
-        {children}
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <FloatingCTAs />
       </body>
     </html>
   );

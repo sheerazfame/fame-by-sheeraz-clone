@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const CALENDLY_URL =
   "https://calendly.com/free15-mindiscoverycall/fameauditcall";
@@ -46,10 +47,14 @@ function ChevronDownIcon() {
 }
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,7 +90,7 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-7 lg:gap-9">
             <Link
               href="/"
-              className="relative text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE] font-[family-name:var(--font-inter)] font-medium after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]"
+              className={`relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium ${isActive("/") ? "text-[#EEEEEE] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]" : "text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200"}`}
             >
               Home
             </Link>
@@ -126,21 +131,21 @@ export default function Header() {
 
             <Link
               href="/casestudies"
-              className="text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200 font-[family-name:var(--font-inter)] font-medium"
+              className={`relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium ${isActive("/casestudies") ? "text-[#EEEEEE] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]" : "text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200"}`}
             >
               Case Studies
             </Link>
 
             <Link
               href="/press"
-              className="text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200 font-[family-name:var(--font-inter)] font-medium"
+              className={`relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium ${isActive("/press") ? "text-[#EEEEEE] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]" : "text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200"}`}
             >
               Press
             </Link>
 
             <Link
               href="/contact"
-              className="text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200 font-[family-name:var(--font-inter)] font-medium"
+              className={`relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium ${isActive("/contact") ? "text-[#EEEEEE] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]" : "text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200"}`}
             >
               Contact Us
             </Link>
