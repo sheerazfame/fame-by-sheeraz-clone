@@ -24,58 +24,40 @@ function WhatsAppIcon() {
 export default function HeroSection() {
   return (
     <>
-      {/* Full viewport hero - two stacked sub-sections */}
-      <section id="home" className="relative overflow-hidden" style={{ minHeight: "100vh" }}>
-
-        {/* TOP HALF: black bg with huge SHEERAZ HASAN heading */}
+      {/* Hero section - matches live site layout: 904px at 1536px viewport */}
+      <section
+        id="home"
+        className="relative bg-black overflow-hidden"
+        style={{ height: "clamp(500px, 58.85vw, 904px)" }}
+      >
+        {/* Hollywood Hills background image */}
         <div
-          className="relative z-10 flex items-end pb-0 text-center"
-          style={{ background: "#000000", paddingTop: "60px", minHeight: "30vh" }}
-        >
-          <h1
-            className="font-[family-name:var(--font-barlow)] font-black italic uppercase text-[#F14312] w-full leading-none"
-            style={{
-              fontSize: "clamp(55px, 11.5vw, 175px)",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            Sheeraz Hasan
-          </h1>
-        </div>
-
-        {/* BOTTOM HALF: Hollywood Hills image */}
-        <div
-          className="relative w-full"
+          className="absolute"
           style={{
-            minHeight: "70vh",
-            backgroundImage: "url('/images/hero-bg.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center top",
+            top: "27%",
+            left: "2.08%",
+            width: "94.86%",
+            height: "69.25%",
           }}
         >
-          {/* Gradient from black at top to transparent */}
-          <div
-            className="absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.5) 100%)" }}
+          <Image
+            src="/images/hero-bg.png"
+            alt="Fame by Sheeraz Hollywood Hills"
+            fill
+            className="object-cover"
+            sizes="95vw"
+            unoptimized
           />
-
-          {/* #1 FAME & AI STRATEGIST */}
-          <p
-            className="absolute top-6 right-6 sm:top-8 sm:right-10 text-right z-10 font-[family-name:var(--font-barlow)] font-black italic uppercase text-[#EEEEEE]"
-            style={{ fontSize: "clamp(13px, 1.9vw, 28px)", lineHeight: 1.1 }}
-          >
-            #1 Fame &amp; AI Strategist
-          </p>
         </div>
 
-        {/* Celebrity collage - section-level overlay, centered */}
+        {/* Celebrity collage */}
         <div
-          className="absolute bottom-0 pointer-events-none"
+          className="absolute"
           style={{
-            top: "21%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "55%",
+            top: "21.35%",
+            left: "22.33%",
+            width: "54.3%",
+            height: "78.65%",
           }}
         >
           <Image
@@ -88,6 +70,33 @@ export default function HeroSection() {
             unoptimized
           />
         </div>
+
+        {/* SHEERAZ HASAN heading */}
+        <h1
+          className="absolute font-[family-name:var(--font-barlow)] font-black italic uppercase text-[#F14312] leading-none"
+          style={{
+            top: "7.52%",
+            left: "2.67%",
+            width: "93.75%",
+            fontSize: "clamp(55px, 10.41vw, 160px)",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          Sheeraz Hasan
+        </h1>
+
+        {/* #1 FAME & AI STRATEGIST */}
+        <p
+          className="absolute text-right font-[family-name:var(--font-barlow)] font-black italic uppercase text-[#EEEEEE] leading-tight"
+          style={{
+            top: "25.44%",
+            left: "65.3%",
+            width: "31.1%",
+            fontSize: "clamp(16px, 2.42vw, 37px)",
+          }}
+        >
+          #1 Fame &amp; AI Strategist
+        </p>
       </section>
 
       {/* Floating CTAs */}
