@@ -40,4 +40,14 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
+# planning + validation artifacts
+/.planning/
+/.playwright-mcp/
+
+# screenshots from local validation (root-level pngs only)
+/edit-*.png
+/home-*.png
+/v2-*.png
+/fame-ai-*.png
+/service-*.png
+/live-site-snapshot.yml
