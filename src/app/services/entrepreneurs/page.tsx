@@ -1,226 +1,208 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { SITE } from "@/lib/site";
+import { JsonLd, breadcrumbSchema, serviceSchema } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Get Attention | Sheeraz Hasan | FAME by Sheeraz",
+  title: "For Entrepreneurs · Online & AI Presence",
+  description:
+    "We build the complete online presence investors expect when searching a founder's name — Google Knowledge Panel, press, founder website, AI search visibility, unified profile.",
+  alternates: { canonical: `${SITE.url}/services/entrepreneurs` },
 };
 
-const problems = [
+const PROBLEMS = [
   "No Google Knowledge Panel",
-  "No consistent biography",
+  "No consistent biography across platforms",
   "No press references",
-  "No centralized website",
+  "No centralised website",
   "No AI search visibility",
-  "Outdated information across all platforms",
+  "Outdated or conflicting information online",
 ];
 
-const services = [
-  {
-    num: "01",
-    title: "Strategy Calls",
-    description:
-      "One-on-one calls with our team to map out your visibility strategy and define your online narrative.",
-  },
-  {
-    num: "02",
-    title: "Full Online Presence Audit & Rebuild",
-    description:
-      "We audit every digital touchpoint and rebuild your presence from scratch with accuracy and authority.",
-  },
-  {
-    num: "03",
-    title: "Google Knowledge Panel Build",
-    description:
-      "We build, verify, and optimize your Google Knowledge Panel so you show up with credibility.",
-  },
-  {
-    num: "04",
-    title: "Search & AI Visibility",
-    description:
-      "Ensure you appear accurately in Google, ChatGPT, Perplexity, and all emerging AI search tools.",
-  },
-  {
-    num: "05",
-    title: "Press & Media Placements",
-    description:
-      "Guaranteed placements in top-tier global publications that establish your authority.",
-  },
-  {
-    num: "06",
-    title: "Founder Website Design",
-    description:
-      "A premium personal website that serves as your centralized digital hub and credibility anchor.",
-  },
-  {
-    num: "07",
-    title: "LinkedIn Optimization",
-    description:
-      "Full profile rewrite, content strategy, and positioning to attract the right connections.",
-  },
-  {
-    num: "08",
-    title: "Autobiography Development",
-    description:
-      "We craft your founder story — from origin to vision — into a compelling narrative asset.",
-  },
+const BENEFITS = [
+  { numeral: "I.", title: "Become trusted &amp; verified", body: "When investors, partners or talent search your name, they meet a complete, consistent, credentialed founder." },
+  { numeral: "II.", title: "Make your project stand out", body: "A founder presence engineered to make your company unmissable to the people who can change its trajectory." },
+  { numeral: "III.", title: "Control your narrative", body: "Own the storyline, the keywords, the timing — across Google, ChatGPT, Gemini, Grok and Perplexity." },
+  { numeral: "IV.", title: "Boost your networking", body: "A founder dossier that opens doors, books rooms and earns warm introductions." },
+  { numeral: "V.", title: "Appear in trusted news", body: "Tier-1 placements where decision-makers actually read." },
+  { numeral: "VI.", title: "Strengthen your digital footprint", body: "Verified, knowledge-graph-grade presence engineered to compound for years." },
 ];
 
 export default function EntrepreneursPage() {
   return (
     <>
-      {/* ── Hero Section ── */}
-      <section className="bg-white py-16 md:py-24 px-6 md:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Left content */}
-          <div>
-            <p className="text-[#EE4223] font-[family-name:var(--font-inter)] text-sm uppercase tracking-widest font-semibold mb-4">
-              FOUNDERS, CEOS AND ENTREPRENEURS
+      <JsonLd
+        data={[
+          serviceSchema({
+            slug: "entrepreneurs",
+            name: "Online & AI Presence for Entrepreneurs",
+            description:
+              "Complete founder online presence — Google Knowledge Panel, press, founder website, AI search visibility, unified profile.",
+          }),
+          breadcrumbSchema([
+            { name: "Home", url: SITE.url },
+            { name: "Services", url: `${SITE.url}/fame-ai` },
+            { name: "Entrepreneurs", url: `${SITE.url}/services/entrepreneurs` },
+          ]),
+        ]}
+      />
+
+      {/* Cover */}
+      <section className="bg-[#0A0606] pt-[140px] sm:pt-[160px] pb-16 sm:pb-20">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="flex items-baseline justify-between border-b border-[#F5F0E8]/15 pb-5 mb-12">
+            <p className="lede italic text-[#F5F0E8]/55 text-sm">
+              Fame by Sheeraz <span className="mx-2 text-[#F5F0E8]/25">·</span>
+              <Link href="/fame-ai" className="hover:text-[#F14312] transition-colors">Services</Link>
             </p>
+            <p className="lede italic text-[#F5F0E8]/40 text-sm">For Founders &amp; CEOs</p>
+          </div>
 
-            <h1
-              className="font-[family-name:var(--font-barlow)] font-bold italic text-[#01060D] leading-[1.1] mb-6"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-            >
-              We Build Your Complete Founder Online Presence
-            </h1>
-
-            <p className="font-[family-name:var(--font-inter)] text-[#333] text-base leading-relaxed mb-8">
-              Your Google Knowledge Panel. Your press articles. Your AI
-              visibility. Your digital footprint defines whether investors,
-              partners, and the world take you seriously. We build, fix, and
-              optimize every layer of your online presence so you look as
-              credible online as you are in person.
-            </p>
-
-            <Link
-              href="/bookacall"
-              className="btn-orange text-base"
-            >
-              Book a Call
+          <p className="kicker kicker-fire mb-6">For Entrepreneurs</p>
+          <h1
+            className="font-display text-[#F5F0E8] mb-8 max-w-5xl"
+            style={{
+              fontSize: "clamp(46px, 7.5vw, 124px)",
+              lineHeight: "0.92",
+              letterSpacing: "-0.012em",
+            }}
+          >
+            Your complete
+            <br />
+            <span className="text-[#F14312]">founder</span> presence.
+          </h1>
+          <p
+            className="font-serif italic text-[#F5F0E8]/85 max-w-[44ch] mb-10"
+            style={{ fontSize: "clamp(18px, 2vw, 26px)", lineHeight: "1.3" }}
+          >
+            Everything investors expect when they search your name —
+            Google Knowledge Panel, press, founder website, AI search
+            visibility, unified profile.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a href={SITE.calendly} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Book a 15-min Call
+            </a>
+            <Link href="/fame-ai" className="btn-ghost">
+              Apply for the Audit
             </Link>
           </div>
+        </div>
+      </section>
 
-          {/* Right image */}
-          <div className="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center">
-            <Image
-              src="/images/quote-sheeraz-cutout.png"
-              alt="Sheeraz Hasan"
-              width={500}
-              height={600}
-              className="object-contain"
-              unoptimized
-            />
+      {/* The problem */}
+      <section className="bg-[#FBF7F0] text-[#0A0606] py-20 sm:py-28">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10">
+          <div className="lg:col-span-5">
+            <p className="font-sans text-[#F14312] text-[11px] font-semibold tracking-[0.32em] uppercase mb-5">
+              The Problem
+            </p>
+            <p className="numeral italic text-[#0A0606]/40 text-sm mb-8">
+              Chapter I &middot; What investors find
+            </p>
+            <h2
+              className="font-display text-[#0A0606]"
+              style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: "0.95" }}
+            >
+              Most founders fail
+              <br />
+              the <em className="font-serif italic font-normal">search</em> test.
+            </h2>
+            <p className="lede italic text-[#0A0606]/65 mt-6 max-w-md text-base sm:text-lg leading-relaxed">
+              When the people who can change your company&apos;s trajectory
+              search your name, here is what they find — and why they walk.
+            </p>
+          </div>
+          <div className="lg:col-span-7">
+            <ul className="border-t border-[#0A0606]/15">
+              {PROBLEMS.map((p, i) => (
+                <li
+                  key={p}
+                  className="grid grid-cols-12 gap-4 py-6 border-b border-[#0A0606]/10 items-baseline"
+                >
+                  <span className="col-span-2 numeral text-[#F14312] text-base">
+                    {String(i + 1).padStart(2, "0")}.
+                  </span>
+                  <p
+                    className="col-span-10 font-serif italic text-[#0A0606]"
+                    style={{ fontSize: "clamp(17px, 1.4vw, 20px)", lineHeight: "1.4" }}
+                  >
+                    {p}.
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* ── Problem Section ── */}
-      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-4xl mx-auto">
-          <h2
-            className="font-[family-name:var(--font-barlow)] font-bold text-[#EEEEEE] leading-tight mb-10"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-          >
-            The Problem Most Founders Face
-          </h2>
+      {/* The fix — six benefits */}
+      <section className="bg-[#0A0606] py-24 sm:py-32 border-t border-[#F5F0E8]/12">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-8 mb-16">
+            <div className="lg:col-span-4">
+              <p className="kicker kicker-gold mb-5">The Fix</p>
+              <p className="section-mark">Chapter II &middot; What we build</p>
+            </div>
+            <div className="lg:col-span-8">
+              <h2
+                className="font-display text-[#F5F0E8]"
+                style={{ fontSize: "clamp(34px, 4.6vw, 64px)", lineHeight: "0.95" }}
+              >
+                Six things every <em className="font-serif italic font-normal">serious</em> founder needs.
+              </h2>
+            </div>
+          </div>
 
-          <ul className="space-y-4 mb-10">
-            {problems.map((problem) => (
-              <li key={problem} className="flex items-center gap-3">
-                <span className="flex-shrink-0 w-2 h-2 rounded-full bg-[#EE4223]" />
-                <span className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-lg">
-                  {problem}
+          <ol className="border-t border-[#F5F0E8]/12">
+            {BENEFITS.map((b) => (
+              <li
+                key={b.numeral}
+                className="grid grid-cols-12 gap-4 sm:gap-8 items-baseline py-9 border-b border-[#F5F0E8]/12"
+              >
+                <span className="col-span-2 sm:col-span-1 numeral text-[#C9A961] text-lg">
+                  {b.numeral}
                 </span>
+                <h3
+                  className="col-span-10 sm:col-span-4 font-display text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: "1.05" }}
+                  dangerouslySetInnerHTML={{ __html: b.title }}
+                />
+                <p
+                  className="col-span-12 sm:col-span-7 lede italic text-[#F5F0E8]/65"
+                  style={{ fontSize: "clamp(16px, 1.2vw, 18px)", lineHeight: "1.5" }}
+                  dangerouslySetInnerHTML={{ __html: b.body }}
+                />
               </li>
             ))}
-          </ul>
+          </ol>
+        </div>
+      </section>
 
-          <p className="font-[family-name:var(--font-barlow)] font-bold text-[#EE4223] text-2xl">
-            We fix every part of this.
+      {/* CTA */}
+      <section className="bg-[#FBF7F0] text-[#0A0606] py-24 sm:py-32">
+        <div className="max-w-[900px] mx-auto px-5 sm:px-8 lg:px-10 text-center">
+          <p className="font-sans text-[#F14312] text-[11px] font-semibold tracking-[0.32em] uppercase mb-5">
+            The Door
           </p>
-        </div>
-      </section>
-
-      {/* ── Services Grid ── */}
-      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto">
           <h2
-            className="font-[family-name:var(--font-barlow)] font-bold text-[#EEEEEE] text-center leading-tight mb-14"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
+            className="font-display text-[#0A0606] mb-8"
+            style={{ fontSize: "clamp(36px, 5vw, 72px)", lineHeight: "0.95" }}
           >
-            What We Build For You
+            Become <em className="font-serif italic font-normal">unmissable</em>.
           </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {services.map((service) => (
-              <div
-                key={service.num}
-                className="bg-[#0A0F1A] border border-[#1a2235] rounded-xl p-6 hover:border-[#EE4223]/40 transition-colors"
-              >
-                <span className="font-[family-name:var(--font-barlow)] font-bold text-[#EE4223] text-3xl block mb-3">
-                  {service.num}
-                </span>
-                <h3 className="font-[family-name:var(--font-barlow)] font-bold text-white text-lg mb-2">
-                  {service.title}
-                </h3>
-                <p className="font-[family-name:var(--font-inter)] text-[#8794A7] text-sm leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            ))}
+          <p className="lede italic text-[#0A0606]/65 max-w-2xl mx-auto mb-10 text-base sm:text-lg leading-relaxed">
+            The audit is how Sheeraz decides who to take on. Twelve pages,
+            seventy-two hours, no commitment.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/fame-ai" className="btn-primary">
+              Apply for the Audit
+            </Link>
+            <a href={SITE.calendly} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+              Book a Call
+            </a>
           </div>
-        </div>
-      </section>
-
-      {/* ── Stats Section ── */}
-      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[#0A0F1A] border border-[#1a2235] rounded-xl p-10 text-center">
-            <span
-              className="font-[family-name:var(--font-barlow)] font-black text-[#EE4223] block mb-4"
-              style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
-            >
-              80%
-            </span>
-            <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-lg leading-relaxed">
-              of investors will reject you if they can&apos;t verify you online
-            </p>
-          </div>
-
-          <div className="bg-[#0A0F1A] border border-[#1a2235] rounded-xl p-10 text-center">
-            <span
-              className="font-[family-name:var(--font-barlow)] font-black text-[#EE4223] block mb-4"
-              style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
-            >
-              70%
-            </span>
-            <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-lg leading-relaxed">
-              of investor meetings never happen because the founder&apos;s
-              online presence raises doubts
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA Section ── */}
-      <section className="bg-[#EE4223] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white leading-tight mb-8"
-            style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
-          >
-            BOOK A FREE CONSULTATION CALL
-          </h2>
-
-          <Link
-            href="https://wa.me/971585131664"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-white text-[#01060D] font-[family-name:var(--font-barlow)] font-bold text-lg px-10 py-4 rounded-full hover:bg-gray-100 transition-colors"
-          >
-            LET&apos;S TALK
-          </Link>
         </div>
       </section>
     </>

@@ -1,16 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { FormEvent, useState } from "react";
+import { SITE } from "@/lib/site";
 
-// Metadata must be in a separate file for client components, or we set it via
-// the <title> tag. We use a <title> element here since this is a client page.
-
-const AREAS_OF_INTEREST = [
+const AREAS = [
   "Media & Communications",
   "Digital Presence & Visibility",
   "Strategic Advisory",
   "Partnerships",
+  "Press &amp; Editorial",
   "Other",
 ];
 
@@ -20,206 +18,218 @@ export default function ContactPage() {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setTimeout(() => setSubmitted(false), 4000);
   }
 
   return (
     <>
-      <title>Contact Us | famebysheeraz.com</title>
+      <title>Contact &middot; Fame by Sheeraz</title>
 
-      {/* ── Top Section — Orange Background ── */}
-      <section className="bg-[#EE4223]">
-        <div className="max-w-7xl mx-auto px-6 py-16 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Left Column — Logo + Contact Info + Photo */}
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-              {/* FAME 3D Logo */}
-              <div className="relative w-[180px] h-[70px] mb-8">
-                <Image
-                  src="/images/logo-3d.png"
-                  alt="FAME by Sheeraz"
-                  fill
-                  className="object-contain"
-                  sizes="180px"
-                  unoptimized
-                />
-              </div>
-
-              {/* Contact details */}
-              <div className="font-[family-name:var(--font-inter)] text-white space-y-3 text-base mb-10">
-                <p>
-                  <a
-                    href="mailto:info@fame.me"
-                    className="hover:underline"
-                  >
-                    info@fame.me
-                  </a>
-                </p>
-                <p>
-                  <span className="text-white/70 text-sm">(US)</span>{" "}
-                  <a href="tel:+13109251667" className="hover:underline">
-                    +1 (310) 925-1667
-                  </a>
-                </p>
-                <p>
-                  <span className="text-white/70 text-sm">(UAE)</span>{" "}
-                  <a href="tel:+971567868338" className="hover:underline">
-                    +971 56 786 8338
-                  </a>
-                </p>
-              </div>
-
-              {/* Sheeraz circular photo */}
-              <div className="relative w-[200px] h-[200px] rounded-full overflow-hidden">
-                <Image
-                  src="/images/about-sheeraz.jpg"
-                  alt="Sheeraz Hasan"
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: "58% 26%" }}
-                  sizes="200px"
-                  unoptimized
-                />
-              </div>
-            </div>
-
-            {/* Right Column — Heading + Form */}
-            <div>
-              <h1
-                className="font-[family-name:var(--font-barlow)] font-black italic text-white uppercase leading-none mb-3"
-                style={{ fontSize: "clamp(36px, 4.2vw, 60px)" }}
-              >
-                Contact Us
-              </h1>
-              <p className="font-[family-name:var(--font-inter)] text-white text-base mb-10">
-                Send an inquiry today and let&apos;s work together
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Full name */}
-                <input
-                  type="text"
-                  name="fullName"
-                  placeholder="Full name *"
-                  required
-                  className="w-full bg-transparent border-b border-white text-white placeholder:text-white/50 font-[family-name:var(--font-inter)] text-base py-3 outline-none focus:border-white/80 transition-colors"
-                />
-
-                {/* Phone number */}
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Phone number"
-                  className="w-full bg-transparent border-b border-white text-white placeholder:text-white/50 font-[family-name:var(--font-inter)] text-base py-3 outline-none focus:border-white/80 transition-colors"
-                />
-
-                {/* Email */}
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email *"
-                  required
-                  className="w-full bg-transparent border-b border-white text-white placeholder:text-white/50 font-[family-name:var(--font-inter)] text-base py-3 outline-none focus:border-white/80 transition-colors"
-                />
-
-                {/* WhatsApp checkbox */}
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="whatsapp"
-                    className="w-5 h-5 accent-white"
-                  />
-                  <span className="font-[family-name:var(--font-inter)] text-white text-sm">
-                    Please contact me via WhatsApp
-                  </span>
-                </label>
-
-                {/* Company */}
-                <input
-                  type="text"
-                  name="company"
-                  placeholder="Company or organization"
-                  className="w-full bg-transparent border-b border-white text-white placeholder:text-white/50 font-[family-name:var(--font-inter)] text-base py-3 outline-none focus:border-white/80 transition-colors"
-                />
-
-                {/* Website */}
-                <input
-                  type="url"
-                  name="website"
-                  placeholder="Website"
-                  className="w-full bg-transparent border-b border-white text-white placeholder:text-white/50 font-[family-name:var(--font-inter)] text-base py-3 outline-none focus:border-white/80 transition-colors"
-                />
-
-                {/* Subject */}
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="Subject *"
-                  required
-                  className="w-full bg-transparent border-b border-white text-white placeholder:text-white/50 font-[family-name:var(--font-inter)] text-base py-3 outline-none focus:border-white/80 transition-colors"
-                />
-
-                {/* Area of Interest */}
-                <select
-                  name="areaOfInterest"
-                  defaultValue=""
-                  className="w-full bg-transparent border-b border-white text-white font-[family-name:var(--font-inter)] text-base py-3 outline-none appearance-none cursor-pointer [&>option]:bg-[#01060D] [&>option]:text-white"
-                >
-                  <option value="" disabled className="text-white/50">
-                    Area of Interest
-                  </option>
-                  {AREAS_OF_INTEREST.map((area) => (
-                    <option key={area} value={area}>
-                      {area}
-                    </option>
-                  ))}
-                </select>
-
-                {/* Message */}
-                <textarea
-                  name="message"
-                  placeholder="Message *"
-                  required
-                  rows={4}
-                  className="w-full bg-transparent border-b border-white text-white placeholder:text-white/50 font-[family-name:var(--font-inter)] text-base py-3 outline-none focus:border-white/80 transition-colors resize-none"
-                />
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  className="bg-white text-[#01060D] font-[family-name:var(--font-barlow)] font-bold text-base px-10 py-3 rounded-full hover:bg-white/90 transition-colors duration-300"
-                >
-                  {submitted ? "Sent!" : "Submit"}
-                </button>
-              </form>
-            </div>
+      {/* Cover */}
+      <section className="bg-[#0A0606] pt-[140px] sm:pt-[160px] pb-16 sm:pb-20">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="flex items-baseline justify-between border-b border-[#F5F0E8]/15 pb-5 mb-12">
+            <p className="lede italic text-[#F5F0E8]/55 text-sm">
+              Fame by Sheeraz <span className="mx-2 text-[#F5F0E8]/25">·</span>
+              <span className="numeral">Issue No. XXVI</span>
+            </p>
+            <p className="lede italic text-[#F5F0E8]/40 text-sm">The Editorial Office</p>
           </div>
+
+          <p className="kicker kicker-fire mb-6">Get in touch</p>
+          <h1
+            className="font-display text-[#F5F0E8] mb-8 max-w-5xl"
+            style={{
+              fontSize: "clamp(48px, 8vw, 132px)",
+              lineHeight: "0.92",
+              letterSpacing: "-0.012em",
+            }}
+          >
+            Write to <span className="text-[#F14312]">us</span>.
+          </h1>
+          <p
+            className="font-serif italic text-[#F5F0E8]/85 max-w-[42ch]"
+            style={{ fontSize: "clamp(18px, 2vw, 26px)", lineHeight: "1.3" }}
+          >
+            Sheeraz reads what comes through. Choose the channel you prefer.
+          </p>
         </div>
       </section>
 
-      {/* ── Bottom Section — Location Cards ── */}
-      <section className="bg-[#01060D] py-16">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Los Angeles */}
-            <div className="bg-[#0a1018] border border-white/10 rounded-xl p-8">
-              <h3 className="font-[family-name:var(--font-barlow)] font-bold text-[#F14312] text-2xl mb-3">
-                Los Angeles
-              </h3>
-              <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-base leading-relaxed">
-                8367 Sunset Blvd, West Hollywood, CA 90069
-              </p>
-            </div>
+      {/* Two-column spread: contact details left, form right */}
+      <section className="bg-[#FBF7F0] text-[#0A0606] py-20 sm:py-28">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-16">
+          {/* Left: contact details */}
+          <div className="lg:col-span-5">
+            <p className="font-sans text-[#F14312] text-[11px] font-semibold tracking-[0.32em] uppercase mb-5">
+              Direct Lines
+            </p>
+            <p className="numeral italic text-[#0A0606]/40 text-sm mb-10">
+              Chapter I &middot; Reach Sheeraz
+            </p>
 
-            {/* Dubai */}
-            <div className="bg-[#0a1018] border border-white/10 rounded-xl p-8">
-              <h3 className="font-[family-name:var(--font-barlow)] font-bold text-[#F14312] text-2xl mb-3">
-                Dubai
-              </h3>
-              <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-base leading-relaxed">
-                Business Bay, Dubai, UAE
-              </p>
-            </div>
+            <ul className="border-t border-[#0A0606]/15 divide-y divide-[#0A0606]/10">
+              <li className="py-6">
+                <p className="kicker mb-2" style={{ color: "#0A0606", opacity: 0.6 }}>
+                  Editorial Office
+                </p>
+                <p className="font-serif italic text-[#0A0606] text-lg sm:text-xl leading-relaxed">
+                  8367 Sunset Boulevard
+                  <br />
+                  West Hollywood, CA 90069
+                </p>
+              </li>
+
+              <li className="py-6">
+                <p className="kicker mb-2" style={{ color: "#0A0606", opacity: 0.6 }}>
+                  Email
+                </p>
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="font-serif italic text-[#0A0606] hover:text-[#F14312] transition-colors text-lg sm:text-xl"
+                >
+                  {SITE.email}
+                </a>
+              </li>
+
+              <li className="py-6">
+                <p className="kicker mb-2" style={{ color: "#0A0606", opacity: 0.6 }}>
+                  WhatsApp &middot; United States
+                </p>
+                <a
+                  href={`https://wa.me/${SITE.whatsappUS.replace(/\D/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-serif italic text-[#0A0606] hover:text-[#F14312] transition-colors text-lg sm:text-xl"
+                >
+                  {SITE.whatsappUS}
+                </a>
+              </li>
+
+              <li className="py-6">
+                <p className="kicker mb-2" style={{ color: "#0A0606", opacity: 0.6 }}>
+                  WhatsApp &middot; United Arab Emirates
+                </p>
+                <a
+                  href={`https://wa.me/${SITE.whatsappUAE.replace(/\D/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-serif italic text-[#0A0606] hover:text-[#F14312] transition-colors text-lg sm:text-xl"
+                >
+                  {SITE.whatsappUAE}
+                </a>
+              </li>
+
+              <li className="py-6">
+                <p className="kicker mb-2" style={{ color: "#0A0606", opacity: 0.6 }}>
+                  Calendar
+                </p>
+                <a
+                  href={SITE.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-serif italic text-[#0A0606] hover:text-[#F14312] transition-colors text-lg sm:text-xl"
+                >
+                  Book a 15-minute discovery call
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Right: form */}
+          <div className="lg:col-span-7">
+            <p className="font-sans text-[#C9A961] text-[11px] font-semibold tracking-[0.32em] uppercase mb-5">
+              Or write a note
+            </p>
+            <p className="numeral italic text-[#0A0606]/40 text-sm mb-10">
+              Chapter II &middot; The Letter
+            </p>
+
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white border border-[#0A0606]/15 p-6 sm:p-9 space-y-7"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                <label className="block">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.28em] text-[#0A0606]/55 font-semibold">
+                    Full name
+                  </span>
+                  <input
+                    type="text"
+                    required
+                    name="name"
+                    placeholder="Your name"
+                    className="mt-2 w-full bg-transparent border-b border-[#0A0606]/25 focus:border-[#F14312] outline-none py-2 text-[#0A0606] placeholder:text-[#0A0606]/30 font-serif italic text-lg"
+                  />
+                </label>
+                <label className="block">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.28em] text-[#0A0606]/55 font-semibold">
+                    Email
+                  </span>
+                  <input
+                    type="email"
+                    required
+                    name="email"
+                    placeholder="you@brand.com"
+                    className="mt-2 w-full bg-transparent border-b border-[#0A0606]/25 focus:border-[#F14312] outline-none py-2 text-[#0A0606] placeholder:text-[#0A0606]/30 font-serif italic text-lg"
+                  />
+                </label>
+                <label className="block sm:col-span-2">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.28em] text-[#0A0606]/55 font-semibold">
+                    Brand or organization
+                  </span>
+                  <input
+                    type="text"
+                    name="org"
+                    placeholder="The name behind you"
+                    className="mt-2 w-full bg-transparent border-b border-[#0A0606]/25 focus:border-[#F14312] outline-none py-2 text-[#0A0606] placeholder:text-[#0A0606]/30 font-serif italic text-lg"
+                  />
+                </label>
+                <label className="block sm:col-span-2">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.28em] text-[#0A0606]/55 font-semibold">
+                    Area of interest
+                  </span>
+                  <select
+                    name="area"
+                    defaultValue=""
+                    className="mt-2 w-full bg-transparent border-b border-[#0A0606]/25 focus:border-[#F14312] outline-none py-2 text-[#0A0606] font-serif italic text-lg"
+                  >
+                    <option value="" disabled>Select…</option>
+                    {AREAS.map((a) => (
+                      <option key={a} value={a}>{a.replace(/&amp;/g, "&")}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+
+              <label className="block">
+                <span className="font-sans text-[10px] uppercase tracking-[0.28em] text-[#0A0606]/55 font-semibold">
+                  Your message
+                </span>
+                <textarea
+                  required
+                  name="message"
+                  rows={5}
+                  placeholder="Tell Sheeraz what you have in mind."
+                  className="mt-2 w-full bg-transparent border-b border-[#0A0606]/25 focus:border-[#F14312] outline-none py-2 text-[#0A0606] placeholder:text-[#0A0606]/30 resize-none font-serif italic text-lg"
+                />
+              </label>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+                <p className="lede italic text-[#0A0606]/50 text-sm">
+                  Replies typically arrive within 24 hours.
+                </p>
+                <button type="submit" className="btn-primary">
+                  Send
+                </button>
+              </div>
+
+              {submitted && (
+                <p className="font-serif italic text-[#F14312] text-base">
+                  Thank you — your note has reached the editor&apos;s desk.
+                </p>
+              )}
+            </form>
           </div>
         </div>
       </section>

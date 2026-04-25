@@ -1,138 +1,165 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { SITE } from "@/lib/site";
+import { JsonLd, breadcrumbSchema } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Book a Call | famebysheeraz.com",
+  title: "Book a Call",
+  description:
+    "Free 15-minute discovery call with Sheeraz Hasan. Personal branding, brand campaigns, AI-driven media strategy. For individuals and brands.",
+  alternates: { canonical: `${SITE.url}/bookacall` },
 };
-
-const CALENDLY_URL =
-  "https://calendly.com/free15-mindiscoverycall/fameauditcall";
 
 export default function BookACallPage() {
   return (
-    <section className="bg-[#01060D] min-h-screen flex items-center">
-      <div className="w-full max-w-7xl mx-auto px-6 py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 items-center">
-          {/* ── Left Column ── */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-            {/* FAME 3D Logo */}
-            <div className="relative w-[200px] h-[80px] mb-6">
-              <Image
-                src="/images/logo-3d.png"
-                alt="FAME by Sheeraz"
-                fill
-                className="object-contain"
-                sizes="200px"
-                unoptimized
-              />
-            </div>
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: SITE.url },
+          { name: "Book a Call", url: `${SITE.url}/bookacall` },
+        ])}
+      />
 
-            <p className="font-[family-name:var(--font-inter)] text-gray-400 text-sm mb-6">
-              Consultation for brands and individuals
+      {/* Cover */}
+      <section className="bg-[#0A0606] pt-[140px] sm:pt-[160px] pb-12 sm:pb-16">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="flex items-baseline justify-between border-b border-[#F5F0E8]/15 pb-5 mb-12">
+            <p className="lede italic text-[#F5F0E8]/55 text-sm">
+              Fame by Sheeraz <span className="mx-2 text-[#F5F0E8]/25">·</span>
+              <span className="numeral">Issue No. XXVI</span>
             </p>
-
-            <h1
-              className="font-[family-name:var(--font-barlow)] font-black italic text-[#F14312] leading-none mb-6"
-              style={{ fontSize: "clamp(32px, 3.2vw, 48px)" }}
-            >
-              Discovery Call
-            </h1>
-
-            <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-base leading-relaxed max-w-md mb-4">
-              Fill a simple form and schedule a free 15-minute discovery call
-              with Sheeraz Hasan, one of the most connected men in
-              entertainment, media, and AI.
-            </p>
-
-            <p className="font-[family-name:var(--font-inter)] text-gray-500 text-sm italic">
-              *Free of charge.
-            </p>
+            <p className="lede italic text-[#F5F0E8]/40 text-sm">A Personal Audience</p>
           </div>
 
-          {/* ── Center Column — Sheeraz Photo ── */}
-          <div className="flex justify-center">
-            <div
-              className="relative mx-auto"
-              style={{
-                width: "clamp(240px, 24vw, 360px)",
-                aspectRatio: "557/835",
-              }}
-            >
+          <p className="kicker kicker-fire mb-6">A Discovery Call</p>
+          <h1
+            className="font-display text-[#F5F0E8] mb-8 max-w-5xl"
+            style={{
+              fontSize: "clamp(48px, 8vw, 132px)",
+              lineHeight: "0.92",
+              letterSpacing: "-0.012em",
+            }}
+          >
+            Fifteen minutes
+            <br />
+            with <span className="text-[#F14312]">Sheeraz</span>.
+          </h1>
+          <p
+            className="font-serif italic text-[#F5F0E8]/85 max-w-[42ch]"
+            style={{ fontSize: "clamp(18px, 2vw, 26px)", lineHeight: "1.3" }}
+          >
+            Free of charge. Booked through the calendar. Held in confidence.
+          </p>
+        </div>
+      </section>
+
+      {/* Two-tier selection */}
+      <section className="bg-[#0A0606] pb-24 sm:pb-32">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <p className="kicker kicker-gold mb-5">Select one</p>
+          <p className="section-mark mb-10">Chapter I &middot; Two paths</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-[#F5F0E8]/12">
+            {/* Individuals */}
+            <div className="p-8 sm:p-12 border-b lg:border-b-0 lg:border-r border-[#F5F0E8]/12">
+              <span className="numeral text-[#C9A961] text-base">I.</span>
+              <h2
+                className="font-display text-[#F5F0E8] mt-3 mb-3"
+                style={{
+                  fontSize: "clamp(36px, 4vw, 56px)",
+                  lineHeight: "0.95",
+                }}
+              >
+                Individuals
+              </h2>
+              <p className="font-serif italic text-[#C9A961] mb-6 text-lg">
+                For founders, creators and public figures.
+              </p>
+              <p className="lede text-[#F5F0E8]/65 mb-8 text-base sm:text-lg leading-relaxed max-w-md">
+                Personal branding, visibility strategy and media positioning for
+                entrepreneurs, creators, executives and public figures looking
+                to grow their fame and influence.
+              </p>
+              <a
+                href={SITE.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Book the Individual Call
+              </a>
+            </div>
+
+            {/* Brands */}
+            <div className="p-8 sm:p-12">
+              <span className="numeral text-[#C9A961] text-base">II.</span>
+              <h2
+                className="font-display text-[#F5F0E8] mt-3 mb-3"
+                style={{
+                  fontSize: "clamp(36px, 4vw, 56px)",
+                  lineHeight: "0.95",
+                }}
+              >
+                Brands
+              </h2>
+              <p className="font-serif italic text-[#C9A961] mb-6 text-lg">
+                For companies and family offices.
+              </p>
+              <p className="lede text-[#F5F0E8]/65 mb-8 text-base sm:text-lg leading-relaxed max-w-md">
+                Brand campaigns, celebrity partnerships, media amplification
+                and AI-driven strategy for companies looking to scale
+                visibility and dominate their market.
+              </p>
+              <a
+                href={SITE.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Book the Brand Call
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Author block */}
+      <section className="bg-[#FBF7F0] text-[#0A0606] py-20 sm:py-28">
+        <div className="max-w-[1100px] mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 sm:grid-cols-12 gap-x-10 gap-y-8 items-center">
+          <div className="sm:col-span-4">
+            <div className="relative aspect-[4/5] overflow-hidden">
               <Image
                 src="/images/quote-sheeraz-cutout.png"
                 alt="Sheeraz Hasan"
                 fill
-                className="object-contain object-bottom"
-                sizes="(max-width: 1024px) 50vw, 24vw"
+                className="object-contain object-bottom grayscale"
+                sizes="(max-width: 640px) 100vw, 33vw"
                 unoptimized
               />
             </div>
           </div>
-
-          {/* ── Right Column — Option Cards ── */}
-          <div>
-            <h2 className="font-[family-name:var(--font-barlow)] font-bold text-[#EEEEEE] text-xl mb-6 text-center lg:text-left">
-              Select one option:
-            </h2>
-
-            <div className="space-y-5">
-              {/* Individuals Card */}
-              <div
-                className="rounded-xl p-6"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #0d1520 0%, #131f30 100%)",
-                  border: "1px solid rgba(241,67,18,0.25)",
-                }}
-              >
-                <h3 className="font-[family-name:var(--font-barlow)] font-bold text-[#EEEEEE] text-2xl mb-3">
-                  Individuals
-                </h3>
-                <p className="font-[family-name:var(--font-inter)] text-gray-400 text-sm leading-relaxed mb-5">
-                  Personal branding, visibility strategy, and media positioning
-                  for entrepreneurs, creators, executives, and public figures
-                  looking to grow their fame and influence.
-                </p>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block font-[family-name:var(--font-barlow)] font-bold text-white bg-[#F14312] hover:bg-[#EE4223] px-8 py-3 rounded-lg text-base transition-colors duration-300"
-                >
-                  Select
-                </a>
-              </div>
-
-              {/* Brands Card */}
-              <div
-                className="rounded-xl p-6"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #141e2c 0%, #1a2940 100%)",
-                  border: "1px solid rgba(238,238,238,0.12)",
-                }}
-              >
-                <h3 className="font-[family-name:var(--font-barlow)] font-bold text-[#EEEEEE] text-2xl mb-3">
-                  Brands
-                </h3>
-                <p className="font-[family-name:var(--font-inter)] text-gray-400 text-sm leading-relaxed mb-5">
-                  Brand campaigns, celebrity partnerships, media amplification,
-                  and AI-driven strategies for companies looking to scale
-                  visibility and dominate their market.
-                </p>
-                <a
-                  href={CALENDLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block font-[family-name:var(--font-barlow)] font-bold text-white bg-[#F14312] hover:bg-[#EE4223] px-8 py-3 rounded-lg text-base transition-colors duration-300"
-                >
-                  Select
-                </a>
-              </div>
-            </div>
+          <div className="sm:col-span-8">
+            <p className="font-sans text-[#F14312] text-[11px] font-semibold tracking-[0.32em] uppercase mb-4">
+              Your interlocutor
+            </p>
+            <h3
+              className="font-display text-[#0A0606] mb-4"
+              style={{ fontSize: "clamp(28px, 3.4vw, 44px)", lineHeight: "0.95" }}
+            >
+              Sheeraz Hasan.
+            </h3>
+            <p
+              className="font-serif italic text-[#0A0606]/85 leading-relaxed max-w-[55ch]"
+              style={{ fontSize: "clamp(17px, 1.4vw, 20px)" }}
+            >
+              One of the most connected men in entertainment, media and AI.
+              Generated $3 billion in earned media for Kim Kardashian, Logan
+              Paul, Zendaya, Priyanka Chopra and 250+ others. He&apos;ll listen,
+              ask, and tell you whether we are the right team for what you want.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

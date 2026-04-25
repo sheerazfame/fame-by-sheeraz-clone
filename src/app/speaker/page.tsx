@@ -1,267 +1,176 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { SITE } from "@/lib/site";
+import { JsonLd, breadcrumbSchema } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Book Sheeraz Hasan | Speaker",
+  title: "Book Sheeraz · Keynote Speaker",
+  description:
+    "Sheeraz Hasan as a keynote speaker. Topics span disruptive media strategy, the X-Factor formula, AI-driven marketing, and why CEOs are the new celebrities.",
+  alternates: { canonical: `${SITE.url}/speaker` },
 };
 
-interface Topic {
-  number: string;
-  title: string;
-  description: string;
-}
-
-const topics: Topic[] = [
-  {
-    number: "01",
-    title: "Disruptive Media Strategy",
-    description:
-      "How to break through the noise and capture global attention instantly.",
-  },
-  {
-    number: "02",
-    title: "Finding Your X-Factor",
-    description:
-      "Identify and amplify what makes you or your brand truly unique.",
-  },
-  {
-    number: "03",
-    title: "Money Follows FAME",
-    description:
-      "Why visibility is the ultimate currency in the modern economy.",
-  },
-  {
-    number: "04",
-    title: "Hijack the News",
-    description:
-      "Strategies to insert your brand into trending conversations.",
-  },
-  {
-    number: "05",
-    title: "Next-Gen Marketing Trends",
-    description:
-      "The AI-driven future of marketing, media, and influence.",
-  },
-  {
-    number: "06",
-    title: "CEOs Are the New Celebrities",
-    description:
-      "Why personal branding is now essential for business leaders.",
-  },
+const TOPICS = [
+  { numeral: "I.", title: "Disruptive Media Strategy", body: "How to break through the noise and capture global attention instantly." },
+  { numeral: "II.", title: "Finding Your X-Factor", body: "Identify and amplify what makes you or your brand truly singular." },
+  { numeral: "III.", title: "Money Follows Fame", body: "Why visibility is the ultimate currency in the modern economy." },
+  { numeral: "IV.", title: "Hijack the News", body: "Strategies to insert your brand into the conversations everyone is already having." },
+  { numeral: "V.", title: "Next-Generation Marketing", body: "The AI-driven future of marketing, media and influence." },
+  { numeral: "VI.", title: "CEOs as Celebrities", body: "Why personal branding is now non-negotiable for business leaders." },
 ];
 
-interface ClientCard {
-  name: string;
-  image: string;
-}
-
-const clients: ClientCard[] = [
-  { name: "Kim Kardashian", image: "/images/cs-kim-k.jpg" },
-  { name: "Jennifer Lopez", image: "/images/cs-jennifer-lopez.jpg" },
-  { name: "Logan Paul", image: "/images/cs-logan-paul.jpg" },
-  { name: "Paris Hilton", image: "/images/cs-paris-hilton.jpg" },
-  { name: "Miley Cyrus", image: "/images/cs-miley.jpg" },
-  { name: "Priyanka Chopra", image: "/images/cs-priyanka.jpg" },
-  { name: "Zendaya", image: "/images/cs-zendaya.jpg" },
-  { name: "Ricky Martin", image: "/images/cs-ricky-martin.jpg" },
-  { name: "CZ / Binance", image: "/images/case-study-b991.jpg" },
-];
+const STAGES = ["GITEX Global", "SuperAI", "TOKEN2049", "Family Office Summit", "Cannes Lions", "Web Summit"];
 
 export default function SpeakerPage() {
   return (
-    <main className="bg-[#01060D] min-h-screen">
-      {/* 1. Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <Image
-          src="/images/about-sheeraz.jpg"
-          alt="Sheeraz Hasan speaking"
-          fill
-          className="object-cover"
-          style={{ objectPosition: "58% 26%" }}
-          sizes="100vw"
-          priority
-        />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/70" />
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: SITE.url },
+          { name: "Speaker", url: `${SITE.url}/speaker` },
+        ])}
+      />
 
-        {/* Content */}
-        <div className="relative z-10 text-center px-4">
+      {/* Cover */}
+      <section className="bg-[#0A0606] pt-[140px] sm:pt-[160px] pb-16 sm:pb-20">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="flex items-baseline justify-between border-b border-[#F5F0E8]/15 pb-5 mb-12">
+            <p className="lede italic text-[#F5F0E8]/55 text-sm">
+              Fame by Sheeraz <span className="mx-2 text-[#F5F0E8]/25">·</span>
+              <span className="numeral">Issue No. XXVI</span>
+            </p>
+            <p className="lede italic text-[#F5F0E8]/40 text-sm">The Stage</p>
+          </div>
+
+          <p className="kicker kicker-fire mb-6">Keynote</p>
           <h1
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white mb-2"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 3.75rem)" }}
+            className="font-display text-[#F5F0E8] mb-8 max-w-5xl"
+            style={{
+              fontSize: "clamp(48px, 8vw, 132px)",
+              lineHeight: "0.92",
+              letterSpacing: "-0.012em",
+            }}
           >
-            BOOK SHEERAZ HASAN
+            Sheeraz, <span className="text-[#F14312]">on stage</span>.
           </h1>
           <p
-            className="font-[family-name:var(--font-barlow)] font-black italic text-[#F14312] mb-10"
-            style={{ fontSize: "clamp(1.5rem, 4vw, 2.25rem)" }}
+            className="font-serif italic text-[#F5F0E8]/85 max-w-[44ch]"
+            style={{ fontSize: "clamp(18px, 2vw, 26px)", lineHeight: "1.3" }}
           >
-            TO SPEAK AT YOUR EVENT
+            Twenty-five years of fame engineering, distilled into a keynote
+            tailored to your audience.
           </p>
-          <Link href="/contact" className="btn-orange text-base px-8 py-4">
-            Book Now
-          </Link>
         </div>
       </section>
 
-      {/* 2. About Speaker Section */}
-      <section className="py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: Text */}
-            <div>
-              <h2
-                className="font-[family-name:var(--font-barlow)] font-black italic text-white mb-8"
-                style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)" }}
-              >
-                THE WORLD&apos;S #1 FAME &amp; AI STRATEGIST ON STAGE
-              </h2>
-              <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-base leading-relaxed opacity-90">
-                Sheeraz Hasan delivers high-energy, no-fluff keynotes on fame
-                strategy, AI disruption, celebrity branding, and the attention
-                economy. With 25+ years in the business of attention and having
-                managed the careers of Kim Kardashian, Logan Paul, Zendaya, and
-                more — Sheeraz brings real stories, real results, and real
-                strategies.
-              </p>
-            </div>
+      {/* Stages strip */}
+      <section className="bg-[#0A0606] py-10 border-y border-[#F5F0E8]/12">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10 flex flex-col md:flex-row items-baseline justify-between gap-y-3">
+          <p className="lede italic text-[#F5F0E8]/55 text-sm">Recent stages, in part:</p>
+          <p className="font-serif italic text-[#F5F0E8] text-base sm:text-lg flex flex-wrap gap-x-4 gap-y-1">
+            {STAGES.map((s, i) => (
+              <span key={s}>
+                {s}
+                {i < STAGES.length - 1 && <span className="ml-4 text-[#C9A961]/50">·</span>}
+              </span>
+            ))}
+          </p>
+        </div>
+      </section>
 
-            {/* Right: Image */}
-            <div className="relative aspect-[4/5] max-w-md mx-auto lg:mx-0 lg:ml-auto">
+      {/* Topics */}
+      <section className="bg-[#0A0606] py-24 sm:py-32">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-8 mb-16">
+            <div className="lg:col-span-4">
+              <p className="kicker kicker-fire mb-5">The Topics</p>
+              <p className="section-mark">Chapter I &middot; What he speaks on</p>
+            </div>
+            <div className="lg:col-span-8">
+              <h2
+                className="font-display text-[#F5F0E8]"
+                style={{ fontSize: "clamp(36px, 5vw, 72px)", lineHeight: "0.95" }}
+              >
+                Six talks. <em className="font-serif italic font-normal">One Sheeraz.</em>
+              </h2>
+            </div>
+          </div>
+
+          <ol className="border-t border-[#F5F0E8]/12">
+            {TOPICS.map((t) => (
+              <li
+                key={t.title}
+                className="grid grid-cols-12 gap-4 sm:gap-8 items-baseline py-9 border-b border-[#F5F0E8]/12"
+              >
+                <span className="col-span-2 sm:col-span-1 numeral text-[#C9A961] text-lg">
+                  {t.numeral}
+                </span>
+                <h3
+                  className="col-span-10 sm:col-span-4 font-display text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: "1.05" }}
+                >
+                  {t.title}
+                </h3>
+                <p
+                  className="col-span-12 sm:col-span-7 lede italic text-[#F5F0E8]/65"
+                  style={{ fontSize: "clamp(16px, 1.2vw, 18px)", lineHeight: "1.5" }}
+                >
+                  {t.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* CTA spread */}
+      <section className="bg-[#FBF7F0] text-[#0A0606] py-24 sm:py-32">
+        <div className="max-w-[1100px] mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10 items-center">
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden">
               <Image
-                src="/images/quote-sheeraz-cutout.png"
+                src="/images/about-sheeraz.jpg"
                 alt="Sheeraz Hasan"
                 fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover grayscale"
+                style={{ objectPosition: "58% 26%" }}
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                unoptimized
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 3. Topics Section */}
-      <section className="py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-[#F14312] text-center mb-14"
-            style={{ fontSize: "clamp(2rem, 4vw, 2.5rem)" }}
-          >
-            TOPIC EXAMPLES
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topics.map((topic) => (
-              <div
-                key={topic.number}
-                className="bg-[#0a1020] border border-[#1a2540] rounded-lg p-6 hover:border-[#F14312]/40 transition-colors duration-300"
-              >
-                <span className="font-[family-name:var(--font-barlow)] font-black italic text-[#F14312] text-3xl">
-                  {topic.number}
-                </span>
-                <h3 className="font-[family-name:var(--font-barlow)] font-bold text-white text-xl mt-3 mb-2">
-                  {topic.title}
-                </h3>
-                <p className="font-[family-name:var(--font-inter)] text-[#8794A7] text-sm leading-relaxed">
-                  {topic.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Testimonial Section */}
-      <section className="py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <blockquote className="border-l-4 border-[#F14312] pl-8 py-4">
-            <p
-              className="font-[family-name:var(--font-barlow)] italic text-[#EEEEEE] leading-relaxed"
-              style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)" }}
+          <div className="lg:col-span-7">
+            <p className="font-sans text-[#F14312] text-[11px] font-semibold tracking-[0.32em] uppercase mb-4">
+              The Booking
+            </p>
+            <h2
+              className="font-display text-[#0A0606] mb-6"
+              style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: "0.95" }}
             >
-              &ldquo;Sheeraz doesn&apos;t just speak — he transforms how you
-              think about visibility, influence, and the business of
-              attention.&rdquo;
+              Want him on your <em className="font-serif italic font-normal">stage</em>?
+            </h2>
+            <p className="lede italic text-[#0A0606]/65 mb-8 max-w-[50ch] text-base sm:text-lg leading-relaxed">
+              Send a brief on the audience, the date and the city. We respond
+              with availability, fee and the talk Sheeraz would tailor for the
+              room.
             </p>
-          </blockquote>
-        </div>
-      </section>
-
-      {/* 5. Clients Section */}
-      <section className="py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white text-center mb-14"
-            style={{ fontSize: "clamp(2rem, 4vw, 2.5rem)" }}
-          >
-            CLIENTS INCLUDE
-          </h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
-            {clients.map((client) => (
-              <div
-                key={client.name}
-                className="group relative aspect-[3/4] rounded-2xl overflow-hidden"
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link href="/contact" className="btn-primary">
+                Send a Brief
+              </Link>
+              <a
+                href={SITE.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
               >
-                <Image
-                  src={client.image}
-                  alt={client.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 640px) 50vw, 33vw"
-                />
-                {/* Name overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pt-12 pb-4 px-3">
-                  <p className="font-[family-name:var(--font-barlow)] font-bold text-white text-sm sm:text-base uppercase text-center">
-                    {client.name}
-                  </p>
-                </div>
-              </div>
-            ))}
+                Book a 15-min Call
+              </a>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* 6. CTA Section */}
-      <section className="bg-[#EE4223] py-20 sm:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white mb-10"
-            style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
-          >
-            TAKE YOUR EVENT TO THE NEXT LEVEL
-          </h2>
-
-          <div className="font-[family-name:var(--font-inter)] text-white/90 mb-10 space-y-1 text-lg">
-            <p className="font-semibold">Suhail Hasan (COO)</p>
-            <p>
-              <a
-                href="mailto:suhail@fame.me"
-                className="hover:text-white transition-colors underline underline-offset-2"
-              >
-                suhail@fame.me
-              </a>
-            </p>
-            <p>
-              <a
-                href="tel:+971585131664"
-                className="hover:text-white transition-colors"
-              >
-                +971 58 513 1664
-              </a>
-            </p>
-          </div>
-
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-[#01060D] font-bold rounded-full px-8 py-4 text-base tracking-wide hover:bg-[#EEEEEE] transition-colors duration-200"
-          >
-            Book Now
-          </Link>
-        </div>
-      </section>
-    </main>
+    </>
   );
 }

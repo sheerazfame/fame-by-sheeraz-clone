@@ -1,176 +1,211 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { SITE } from "@/lib/site";
+import { JsonLd, breadcrumbSchema, serviceSchema } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Celebrities | famebysheeraz.com",
+  title: "Celebrity, Influencer & Sports-Star Booking",
+  description:
+    "Securing Hollywood celebrities, Bollywood superstars, global influencers and elite sports icons for brand appearances, endorsements, campaigns, launches and high-profile events worldwide.",
+  alternates: { canonical: `${SITE.url}/services/celebrities` },
 };
 
-const checklistItems = [
+const FOR = [
   "Luxury and premium brands",
-  "Real estate developers and mega-projects",
-  "Tech, AI & Web3 companies",
+  "Real-estate developers and mega-projects",
+  "Tech, AI and Web3 companies",
   "Family offices, funds, and global investors",
 ];
 
-const starPowerCards = [
-  {
-    title: "Global Brand Launches",
-    description:
-      "Major product and brand launches backed by A-list celebrity power and global media coverage.",
-  },
-  {
-    title: "Luxury Real Estate Unveilings",
-    description:
-      "High-profile property reveals with celebrity presence that command premium positioning.",
-  },
-  {
-    title: "Major Sporting Events",
-    description:
-      "Celebrity appearances and activations at the world's biggest sporting stages.",
-  },
-  {
-    title: "Fashion / Film / Music Activations",
-    description:
-      "Red carpet, premiere, and festival activations with cultural icons.",
-  },
-  {
-    title: "Private VIP Events",
-    description:
-      "Exclusive, invitation-only gatherings with elite celebrity appearances.",
-  },
+const APPLICATIONS = [
+  { numeral: "I.", title: "Global Brand Launches", body: "Major product and brand launches backed by A-list celebrity power and global media coverage." },
+  { numeral: "II.", title: "Luxury Real-Estate Unveilings", body: "High-profile property reveals with celebrity presence that command premium positioning." },
+  { numeral: "III.", title: "Major Sporting Events", body: "Celebrity appearances and activations at the world's biggest sporting stages." },
+  { numeral: "IV.", title: "Fashion, Film &amp; Music", body: "Red-carpet, premiere and festival activations with cultural icons." },
+  { numeral: "V.", title: "Private VIP Events", body: "Exclusive, invitation-only gatherings with elite celebrity appearances." },
 ];
 
 export default function CelebritiesPage() {
   return (
     <>
-      {/* ── Hero Section ── */}
-      <section className="relative w-full min-h-[600px] flex flex-col md:flex-row">
-        {/* Left panel - orange */}
-        <div className="w-full md:w-[45%] bg-[#EE4223] flex items-center px-8 py-16 md:px-12 lg:px-16">
-          <div className="max-w-lg">
-            <h1
-              className="font-[family-name:var(--font-barlow)] font-black italic text-white leading-[1.1] mb-8"
-              style={{ fontSize: "clamp(2rem, 3.5vw, 2.5rem)" }}
-            >
-              CELEBRITY, INFLUENCER &amp; SPORTS STAR BOOKING
-            </h1>
+      <JsonLd
+        data={[
+          serviceSchema({
+            slug: "celebrities",
+            name: "Celebrity, Influencer & Sports-Star Booking",
+            description:
+              "Securing Hollywood celebrities, Bollywood superstars, global influencers and elite sports icons for global brand work.",
+          }),
+          breadcrumbSchema([
+            { name: "Home", url: SITE.url },
+            { name: "Services", url: `${SITE.url}/fame-ai` },
+            { name: "Celebrities", url: `${SITE.url}/services/celebrities` },
+          ]),
+        ]}
+      />
 
-            <ul className="space-y-4">
-              {checklistItems.map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  {/* Teal/green checkmark circle */}
-                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-teal-500 flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={3}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+      {/* Cover */}
+      <section className="bg-[#0A0606] pt-[140px] sm:pt-[160px] pb-16 sm:pb-20">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="flex items-baseline justify-between border-b border-[#F5F0E8]/15 pb-5 mb-12">
+            <p className="lede italic text-[#F5F0E8]/55 text-sm">
+              Fame by Sheeraz <span className="mx-2 text-[#F5F0E8]/25">·</span>
+              <Link href="/fame-ai" className="hover:text-[#F14312] transition-colors">Services</Link>
+            </p>
+            <p className="lede italic text-[#F5F0E8]/40 text-sm">A Legacy Service</p>
+          </div>
+
+          <p className="kicker kicker-fire mb-6">Celebrity Booking</p>
+          <h1
+            className="font-display text-[#F5F0E8] mb-8 max-w-5xl"
+            style={{
+              fontSize: "clamp(46px, 7.5vw, 124px)",
+              lineHeight: "0.92",
+              letterSpacing: "-0.012em",
+            }}
+          >
+            Celebrity, influencer
+            <br />
+            &amp; <span className="text-[#F14312]">sports-star</span> booking.
+          </h1>
+          <p
+            className="font-serif italic text-[#F5F0E8]/85 max-w-[44ch] mb-10"
+            style={{ fontSize: "clamp(18px, 2vw, 26px)", lineHeight: "1.3" }}
+          >
+            The right star — at the right moment — on the right stage.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a href={SITE.calendly} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Book a 15-min Call
+            </a>
+            <Link href="/fame-ai" className="btn-ghost">
+              Apply for the Audit
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* For whom — magazine spread */}
+      <section className="bg-[#FBF7F0] text-[#0A0606] py-20 sm:py-28">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-10">
+          <div className="lg:col-span-5">
+            <p className="font-sans text-[#F14312] text-[11px] font-semibold tracking-[0.32em] uppercase mb-5">
+              For whom
+            </p>
+            <p className="numeral italic text-[#0A0606]/40 text-sm mb-8">
+              Chapter I &middot; The Audience
+            </p>
+            <h2
+              className="font-display text-[#0A0606]"
+              style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: "0.95" }}
+            >
+              The clients we serve.
+            </h2>
+          </div>
+          <div className="lg:col-span-7">
+            <ul className="border-t border-[#0A0606]/15">
+              {FOR.map((item, i) => (
+                <li key={item} className="grid grid-cols-12 gap-4 py-7 border-b border-[#0A0606]/10 items-baseline">
+                  <span className="col-span-2 numeral text-[#F14312] text-base">
+                    {String(i + 1).padStart(2, "0")}.
                   </span>
-                  <span className="font-[family-name:var(--font-inter)] text-white text-base font-medium">
+                  <p
+                    className="col-span-10 font-serif italic text-[#0A0606]"
+                    style={{ fontSize: "clamp(18px, 1.6vw, 22px)", lineHeight: "1.35" }}
+                  >
                     {item}
-                  </span>
+                  </p>
                 </li>
               ))}
             </ul>
           </div>
         </div>
+      </section>
 
-        {/* Right panel - image */}
-        <div className="w-full md:w-[55%] relative min-h-[400px] md:min-h-[600px]">
+      {/* Hero photograph */}
+      <section className="bg-[#0A0606] py-0">
+        <div className="relative aspect-[16/9] sm:aspect-[21/9]">
           <Image
             src="/images/cs-logan-paul.jpg"
-            alt="Celebrity booking by FAME by Sheeraz"
+            alt="Celebrity activation by Fame by Sheeraz"
             fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 55vw"
-            priority
+            className="object-cover grayscale"
+            sizes="100vw"
             unoptimized
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0606] via-transparent to-transparent" />
         </div>
       </section>
 
-      {/* ── Content Section ── */}
-      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-[#EE4223] font-[family-name:var(--font-inter)] text-sm uppercase tracking-widest font-semibold mb-6">
-            Powered by FAME by Sheeraz
-          </p>
-
-          <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-lg leading-relaxed mb-6">
-            When a brand needs instant credibility, global attention, and
-            cultural dominance, there is one proven amplifier:
-          </p>
-
-          <p
-            className="font-[family-name:var(--font-barlow)] font-bold text-[#EE4223] text-xl md:text-2xl leading-snug mb-6"
-          >
-            THE RIGHT STAR — AT THE RIGHT MOMENT — ON THE RIGHT STAGE.
-          </p>
-
-          <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-lg leading-relaxed">
-            At FAME by Sheeraz, we specialize in securing Hollywood celebrities,
-            Bollywood superstars, global influencers, and elite sports icons for
-            brand appearances, endorsements, campaigns, launches, and
-            high-profile events worldwide.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Two Decades Section ── */}
-      <section className="bg-[#EE4223] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-6xl mx-auto">
-          <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white text-center leading-tight mb-14"
-            style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
-          >
-            TWO DECADES OF GLOBAL STAR POWER
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {starPowerCards.map((card) => (
-              <div
-                key={card.title}
-                className="bg-[#01060D] rounded-xl p-6 flex flex-col"
+      {/* Applications */}
+      <section className="bg-[#0A0606] py-24 sm:py-32 border-t border-[#F5F0E8]/12">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-8 mb-16">
+            <div className="lg:col-span-4">
+              <p className="kicker kicker-gold mb-5">The Applications</p>
+              <p className="section-mark">Chapter II &middot; Where stars work for brands</p>
+            </div>
+            <div className="lg:col-span-8">
+              <h2
+                className="font-display text-[#F5F0E8]"
+                style={{ fontSize: "clamp(34px, 4.6vw, 64px)", lineHeight: "0.95" }}
               >
-                <h3 className="font-[family-name:var(--font-barlow)] font-bold text-white text-lg mb-3">
-                  {card.title}
-                </h3>
-                <p className="font-[family-name:var(--font-inter)] text-[#8794A7] text-sm leading-relaxed">
-                  {card.description}
-                </p>
-              </div>
-            ))}
+                Two decades of <em className="font-serif italic font-normal">global</em> star power.
+              </h2>
+            </div>
           </div>
+
+          <ol className="border-t border-[#F5F0E8]/12">
+            {APPLICATIONS.map((a) => (
+              <li
+                key={a.title}
+                className="grid grid-cols-12 gap-4 sm:gap-8 items-baseline py-9 border-b border-[#F5F0E8]/12"
+              >
+                <span className="col-span-2 sm:col-span-1 numeral text-[#C9A961] text-lg">
+                  {a.numeral}
+                </span>
+                <h3
+                  className="col-span-10 sm:col-span-4 font-display text-[#F5F0E8]"
+                  style={{ fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: "1.05" }}
+                >
+                  {a.title}
+                </h3>
+                <p
+                  className="col-span-12 sm:col-span-7 lede italic text-[#F5F0E8]/65"
+                  style={{ fontSize: "clamp(16px, 1.2vw, 18px)", lineHeight: "1.5" }}
+                  dangerouslySetInnerHTML={{ __html: a.body }}
+                />
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* ── CTA Section ── */}
-      <section className="bg-[#EE4223] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* CTA */}
+      <section className="bg-[#FBF7F0] text-[#0A0606] py-24 sm:py-32">
+        <div className="max-w-[900px] mx-auto px-5 sm:px-8 lg:px-10 text-center">
+          <p className="font-sans text-[#F14312] text-[11px] font-semibold tracking-[0.32em] uppercase mb-5">
+            The Booking
+          </p>
           <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white leading-tight mb-8"
-            style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
+            className="font-display text-[#0A0606] mb-8"
+            style={{ fontSize: "clamp(36px, 5vw, 72px)", lineHeight: "0.95" }}
           >
-            BOOK A FREE CONSULTATION CALL
+            Need a <em className="font-serif italic font-normal">name</em>?
           </h2>
-
-          <Link
-            href="https://wa.me/971585131664"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-white text-[#01060D] font-[family-name:var(--font-barlow)] font-bold text-lg px-10 py-4 rounded-full hover:bg-gray-100 transition-colors"
-          >
-            LET&apos;S TALK
-          </Link>
+          <p className="lede italic text-[#0A0606]/65 max-w-2xl mx-auto mb-10 text-base sm:text-lg leading-relaxed">
+            Send a brief on the brand, the date and the budget. We respond
+            with the right star — and a clear path to securing them.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/contact" className="btn-primary">
+              Send a Brief
+            </Link>
+            <a href={SITE.calendly} target="_blank" rel="noopener noreferrer" className="btn-ghost">
+              Book a Call
+            </a>
+          </div>
         </div>
       </section>
     </>
