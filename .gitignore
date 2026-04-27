@@ -44,6 +44,11 @@ next-env.d.ts
 /.planning/
 /.playwright-mcp/
 
+# Large media (>50MB single file would fail GitHub push)
+# Specific safe-list videos under 50MB are committed; unknown big mp4/mov are ignored
+/public/videos/cases/*.mov
+/public/videos/cases/_full/
+
 # screenshots from local validation (root-level pngs only)
 /edit-*.png
 /home-*.png
