@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 const CALENDLY_URL =
   "https://calendly.com/free15-mindiscoverycall/fameauditcall";
-const WHATSAPP_URL = "https://wa.me/15551234567";
+const WHATSAPP_URL = "https://wa.me/971585131664";
 
 const servicesDropdown = [
   { label: "Celebrities", href: "/services/celebrities" },

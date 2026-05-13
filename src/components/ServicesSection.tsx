@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const WHATSAPP_URL = "https://wa.me/13109251667";
+const WHATSAPP_URL = "https://wa.me/971585131664";
 
 interface ServiceCard {
   image: string;
@@ -28,7 +28,7 @@ const row1: ServiceCard[] = [
     description:
       "Become instantly trusted and verified whenever anyone searches your name.",
     ctaLabel: "LEARN MORE",
-    ctaHref: "/services/online-ai-presence",
+    ctaHref: "/services/entrepreneurs",
   },
   {
     image: "/images/service-networking.png",
@@ -47,14 +47,14 @@ const row2: ServiceCard[] = [
     description:
       "From social media influencers and KOLs to the biggest stars in the world.",
     ctaLabel: "LEARN MORE",
-    ctaHref: "/services/celebrities-influencers",
+    ctaHref: "/services/celebrities",
   },
   {
     image: "/images/service-press.png",
     title: "PRESS & MEDIA SOLUTIONS",
     description: "Full media machine for all your PR needs.",
     ctaLabel: "LEARN MORE",
-    ctaHref: "/services/press-media",
+    ctaHref: "/services/prservices",
   },
   {
     image: "/images/service-crypto.png",
@@ -62,7 +62,7 @@ const row2: ServiceCard[] = [
     description:
       "Creating FOMO around your project and helping you get listed in the biggest crypto exchanges.",
     ctaLabel: "LEARN MORE",
-    ctaHref: "/services/crypto-web3",
+    ctaHref: "/services/web3",
   },
 ];
 
