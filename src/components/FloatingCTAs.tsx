@@ -1,7 +1,8 @@
 "use client";
 
-const WHATSAPP_URL = "https://wa.me/13109251667";
-const CAL_URL = "https://cal.com/sheerazhasan";
+const WHATSAPP_URL = "https://wa.me/971585131664";
+const CAL_URL =
+  "https://calendly.com/free15-mindiscoverycall/fameauditcall";
 
 function ChatIcon() {
   return (

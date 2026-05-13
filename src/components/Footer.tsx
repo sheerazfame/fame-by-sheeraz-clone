@@ -4,49 +4,54 @@ import Link from "next/link";
 const socialLinks = [
   {
     name: "X (Twitter)",
-    href: "https://x.com/sheerazhasan",
+    href: "https://twitter.com/sheerazhasan",
     path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
     viewBox: "0 0 24 24",
   },
   {
     name: "Instagram",
-    href: "https://instagram.com/sheerazhasan",
+    href: "https://www.instagram.com/sheeraz/",
     path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z",
     viewBox: "0 0 24 24",
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/sheerazhasan",
+    href: "https://www.linkedin.com/in/sheerazhasan",
     path: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zm2-7a2 2 0 110 4 2 2 0 010-4z",
     viewBox: "0 0 24 24",
   },
   {
     name: "YouTube",
-    href: "https://youtube.com/",
+    href: "https://www.youtube.com/@FAMEBySheeraz/featured",
     path: "M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z",
     viewBox: "0 0 24 24",
   },
   {
     name: "TikTok",
-    href: "https://tiktok.com/",
+    href: "https://www.tiktok.com/@famebysheeraz",
     path: "M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.83a8.18 8.18 0 004.78 1.5V6.87a4.85 4.85 0 01-1.01-.18z",
     viewBox: "0 0 24 24",
   },
 ];
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Case studies", href: "#case-studies" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Case studies", href: "/casestudies" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const additionalLinks = [
-  { label: "Dubai.news", href: "https://dubai.news" },
-  { label: "Sheeraz.com", href: "https://sheeraz.com" },
-  { label: "FAME 911", href: "#" },
-  { label: "Hollywood.AI", href: "https://hollywood.ai" },
-  { label: "Bollywood.AI", href: "https://bollywood.ai" },
+  { label: "Dubai.news", href: "https://dubai.news/" },
+  { label: "Sheeraz.com", href: "http://www.sheeraz.com/" },
+  { label: "FAME 911", href: "http://www.fame911.com/" },
+  { label: "Hollywood.AI", href: "https://hollywood.ai/" },
+  { label: "Bollywood.AI", href: "https://bollywood.ai/" },
+];
+
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
 ];
 
 export default function Footer() {
@@ -62,7 +67,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Column 1: Logo + social + address */}
           <div className="flex flex-col gap-6">
-            <Link href="#home" className="inline-block">
+            <Link href="/" className="inline-block">
               <div className="relative h-16 w-20">
                 <Image
                   src="/images/logo-3d.png"
@@ -200,12 +205,23 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider + copyright */}
-        <div className="mt-12 pt-8 border-t border-white/5 text-center">
-          <p className="font-[family-name:var(--font-inter)] text-xs text-[#EEEEEE]/20">
+        {/* Divider + copyright + legal */}
+        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="font-[family-name:var(--font-inter)] text-xs text-[#EEEEEE]/30">
             &copy; {new Date().getFullYear()} Fame by Sheeraz. All rights
             reserved.
           </p>
+          <div className="flex items-center gap-6">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="font-[family-name:var(--font-inter)] text-xs text-[#EEEEEE]/40 hover:text-[#EEEEEE] transition-colors duration-300"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
