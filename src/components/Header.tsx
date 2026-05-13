@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const CALENDLY_URL =
-  "https://calendly.com/free15-mindiscoverycall/fameauditcall";
 const WHATSAPP_URL = "https://wa.me/971585131664";
 
 const servicesDropdown = [
@@ -31,17 +29,24 @@ function WhatsAppIcon() {
   );
 }
 
-function ChevronDownIcon() {
+function ChevronDownIcon({ open }: { open: boolean }) {
   return (
     <svg
       width="12"
       height="12"
       viewBox="0 0 12 12"
-      fill="currentColor"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
+      className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
     >
-      <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M2 4l4 4 4-4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -52,6 +57,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -64,6 +70,44 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  // Hover-intent helpers
+  const openServices = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setServicesOpen(true);
+  };
+  const scheduleClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setServicesOpen(false), 220);
+  };
+
+  // Close dropdown on outside click + ESC
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setServicesOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [servicesOpen]);
+
+  const navLinkClass = (active: boolean) =>
+    `relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium transition-colors duration-200 ${
+      active
+        ? "text-[#F14312] after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-[#F14312]"
+        : "text-[#EEEEEE]/85 hover:text-[#EEEEEE]"
+    }`;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -73,7 +117,7 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[72px]">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center h-[72px] gap-6">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
@@ -86,78 +130,112 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-7 lg:gap-9">
-            <Link
-              href="/"
-              className={`relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium ${isActive("/") ? "text-[#EEEEEE] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]" : "text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200"}`}
-            >
+          {/* Desktop Navigation — centered */}
+          <nav className="hidden md:flex items-center justify-center gap-8 lg:gap-12">
+            <Link href="/" className={navLinkClass(isActive("/"))}>
               Home
             </Link>
 
-            {/* Services with dropdown */}
+            {/* Services with mega-dropdown */}
             <div
               className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
+              onMouseEnter={openServices}
+              onMouseLeave={scheduleClose}
             >
               <Link
                 href="/services"
-                className="flex items-center gap-1 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200 font-[family-name:var(--font-inter)] font-medium"
+                className={`flex items-center gap-1.5 ${navLinkClass(
+                  pathname.startsWith("/services")
+                )}`}
               >
                 Services
-                <ChevronDownIcon />
+                <ChevronDownIcon open={servicesOpen} />
               </Link>
 
-              {/* Dropdown */}
+              {/* Invisible hover bridge — closes the gap between trigger and panel */}
               <div
-                className={`absolute top-full left-0 mt-2 w-48 bg-[rgba(0,0,0,0.95)] border border-white/10 py-1 transition-all duration-200 ${
+                aria-hidden="true"
+                className={`absolute top-full left-1/2 -translate-x-1/2 h-3 w-[460px] ${
+                  servicesOpen ? "" : "pointer-events-none"
+                }`}
+              />
+
+              {/* Mega-dropdown panel */}
+              <div
+                className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-[460px] rounded-lg overflow-hidden shadow-2xl transition-all duration-200 ${
                   servicesOpen
                     ? "opacity-100 translate-y-0 pointer-events-auto"
                     : "opacity-0 -translate-y-1 pointer-events-none"
                 }`}
+                onMouseEnter={openServices}
+                onMouseLeave={scheduleClose}
+                role="menu"
+                aria-label="Services"
               >
-                {servicesDropdown.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block px-4 py-2.5 text-[12px] uppercase tracking-[0.1em] text-[#EEEEEE]/70 hover:text-[#EEEEEE] hover:bg-white/5 transition-colors duration-150 font-[family-name:var(--font-inter)]"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                <div className="grid grid-cols-[1fr_180px]">
+                  {/* Left column: items */}
+                  <div className="bg-white py-3">
+                    {servicesDropdown.map((item) => {
+                      const active = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setServicesOpen(false)}
+                          className={`block px-6 py-3 text-[13px] uppercase tracking-[0.18em] font-[family-name:var(--font-inter)] font-semibold transition-colors duration-150 ${
+                            active
+                              ? "text-[#F14312] bg-[#F14312]/5"
+                              : "text-[#0a0a0a] hover:text-[#F14312] hover:bg-[#F14312]/5"
+                          }`}
+                          role="menuitem"
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {/* Right column: FAME 3D logo */}
+                  <div className="relative bg-gradient-to-br from-[#0A0606] to-[#1A0A05] flex items-center justify-center">
+                    <Image
+                      src="/images/logo-3d.png"
+                      alt=""
+                      width={120}
+                      height={80}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
             <Link
               href="/casestudies"
-              className={`relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium ${isActive("/casestudies") ? "text-[#EEEEEE] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]" : "text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200"}`}
+              className={navLinkClass(isActive("/casestudies"))}
             >
               Case Studies
             </Link>
-
             <Link
               href="/press"
-              className={`relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium ${isActive("/press") ? "text-[#EEEEEE] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]" : "text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200"}`}
+              className={navLinkClass(isActive("/press"))}
             >
               Press
             </Link>
-
             <Link
               href="/contact"
-              className={`relative text-[13px] uppercase tracking-[0.12em] font-[family-name:var(--font-inter)] font-medium ${isActive("/contact") ? "text-[#EEEEEE] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1.5px] after:bg-[#EEEEEE]" : "text-[#EEEEEE]/80 hover:text-[#EEEEEE] transition-colors duration-200"}`}
+              className={navLinkClass(isActive("/contact"))}
             >
               Contact Us
             </Link>
           </nav>
 
           {/* CTA Button - Desktop */}
-          <div className="hidden md:block">
+          <div className="hidden md:block justify-self-end">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F14312] hover:bg-[#EE4223] text-[#EEEEEE] text-[12px] uppercase tracking-[0.1em] font-bold transition-all duration-200 hover:scale-[1.02] font-[family-name:var(--font-inter)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#F14312] hover:bg-[#EE4223] text-white text-[12px] uppercase tracking-[0.1em] font-bold transition-all duration-200 hover:scale-[1.02] font-[family-name:var(--font-inter)]"
             >
               <WhatsAppIcon />
               Free 15min Call
@@ -167,8 +245,9 @@ export default function Header() {
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-[#EEEEEE] p-2"
+            className="md:hidden text-[#EEEEEE] p-2 justify-self-end"
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             <div className="w-6 flex flex-col gap-[5px]">
               <span
@@ -210,16 +289,11 @@ export default function Header() {
           <div className="border-b border-white/5">
             <button
               onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-              className="flex items-center justify-between w-full py-3 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/80 font-medium font-[family-name:var(--font-inter)]"
+              className="flex items-center justify-between w-full py-3 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/85 font-medium font-[family-name:var(--font-inter)]"
+              aria-expanded={mobileServicesOpen}
             >
               Services
-              <span
-                className={`transition-transform duration-200 ${
-                  mobileServicesOpen ? "rotate-180" : ""
-                }`}
-              >
-                <ChevronDownIcon />
-              </span>
+              <ChevronDownIcon open={mobileServicesOpen} />
             </button>
             {mobileServicesOpen && (
               <div className="pb-2 pl-4 space-y-1">
@@ -240,7 +314,7 @@ export default function Header() {
           <Link
             href="/casestudies"
             onClick={() => setMobileOpen(false)}
-            className="block py-3 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/80 font-medium font-[family-name:var(--font-inter)] border-b border-white/5"
+            className="block py-3 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/85 font-medium font-[family-name:var(--font-inter)] border-b border-white/5"
           >
             Case Studies
           </Link>
@@ -248,7 +322,7 @@ export default function Header() {
           <Link
             href="/press"
             onClick={() => setMobileOpen(false)}
-            className="block py-3 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/80 font-medium font-[family-name:var(--font-inter)] border-b border-white/5"
+            className="block py-3 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/85 font-medium font-[family-name:var(--font-inter)] border-b border-white/5"
           >
             Press
           </Link>
@@ -256,7 +330,7 @@ export default function Header() {
           <Link
             href="/contact"
             onClick={() => setMobileOpen(false)}
-            className="block py-3 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/80 font-medium font-[family-name:var(--font-inter)] border-b border-white/5"
+            className="block py-3 text-[13px] uppercase tracking-[0.12em] text-[#EEEEEE]/85 font-medium font-[family-name:var(--font-inter)] border-b border-white/5"
           >
             Contact Us
           </Link>
@@ -266,7 +340,7 @@ export default function Header() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-[#F14312] text-[#EEEEEE] text-[12px] uppercase tracking-[0.1em] font-bold font-[family-name:var(--font-inter)]"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-[#F14312] text-white text-[12px] uppercase tracking-[0.1em] font-bold font-[family-name:var(--font-inter)]"
             >
               <WhatsAppIcon />
               Free 15min Call

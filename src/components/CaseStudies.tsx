@@ -21,11 +21,15 @@ const caseStudies: CaseStudy[] = [
     image: "/images/cs-kim-k.jpg",
   },
   { name: "PRIYANKA CHOPRA", link: "#", image: "/images/cs-priyanka.jpg" },
+  { name: "PARIS HILTON", link: "#", image: "/images/cs-misc1.jpg" },
   { name: "RICKY MARTIN", link: "#", image: "/images/cs-ricky-martin.jpg" },
   { name: "JENNIFER LOPEZ", link: "#", image: "/images/cs-jennifer-lopez.jpg" },
   { name: "ADAM WAHEED", link: "#", image: "/images/cs-adam-waheed.jpg" },
   { name: "NELK BOYS", link: "#", image: "/images/cs-nelk-boys.jpg" },
   { name: "PAMELA ANDERSON", link: "#", image: "/images/cs-pamela.jpg" },
+  { name: "ANGELABABY X HUANG XIAOMING", link: "#", image: "/images/cs-angelababy.png" },
+  { name: "GABRIEL MACHT", link: "#", image: "/images/cs-misc2.jpg" },
+  { name: "NIKI AND GABI", link: "#", image: "/images/cs-niki-gabi.png" },
   { name: "LELE PONS", link: "#", image: null },
 ];
 
