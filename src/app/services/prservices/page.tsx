@@ -3,17 +3,19 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "PR Services | famebysheeraz.com",
+  description:
+    "Strategic, pay-to-play press and media placement. Don't chase publicity. Control it.",
 };
 
-const narrativeControlItems = [
-  "You control the storyline",
-  "You control the headline",
-  "You control the keywords",
-  "You control the timing",
-  "You control the digital footprint",
+const narrativeControls = [
+  "Controls the storyline",
+  "Controls the headline",
+  "Controls the keywords",
+  "Controls the timing",
+  "Controls the digital footprint",
 ];
 
-const guaranteedItems = [
+const guarantees = [
   "Guaranteed publication",
   "No editorial uncertainty",
   "No journalist risk",
@@ -21,150 +23,128 @@ const guaranteedItems = [
   "No dilution of message",
 ];
 
-const audienceCards = [
-  {
-    title: "HNW Individuals",
-    description:
-      "Ultra-high-net-worth individuals who need press coverage that reflects their stature and protects their reputation.",
-  },
-  {
-    title: "Founders & CEOs",
-    description:
-      "Entrepreneurs and executives who need media authority to attract investment, talent, and strategic partnerships.",
-  },
-  {
-    title: "Investors & Family Offices",
-    description:
-      "Capital allocators who want to control their public narrative and build trust through credible media coverage.",
-  },
-  {
-    title: "Public Figures",
-    description:
-      "Celebrities, influencers, and public personalities who need strategic press to shape perception at scale.",
-  },
-  {
-    title: "Luxury Brands",
-    description:
-      "Premium brands that require high-end editorial placements in publications their audience actually reads.",
-  },
-  {
-    title: "Real Estate Developers",
-    description:
-      "Developers launching mega-projects who need media coverage to attract buyers, investors, and global attention.",
-  },
-  {
-    title: "Web3 / AI / Tech Leaders",
-    description:
-      "Technology founders and innovators who need credibility in mainstream press beyond the crypto and tech echo chamber.",
-  },
+const indexedAuthority = [
+  "Indexed in Google News",
+  "Structured to appear in ChatGPT and AI-driven search results",
+  "Designed to build a permanent digital authority footprint",
 ];
 
-export default function PRServicesPage() {
+const whoNeeds = [
+  "High-net-worth individuals",
+  "Founders & CEOs",
+  "Investors & family offices",
+  "Public figures & influencers",
+  "Luxury brands",
+  "Real estate developers",
+  "Web3, AI & tech leaders",
+];
+
+const advantagePillars = [
+  "Media power",
+  "Search dominance",
+  "AI visibility",
+  "Reputation Architecture",
+];
+
+export default function PrServicesPage() {
   return (
     <>
-      {/* ── Hero Section ── */}
+      {/* ── Hero ── */}
       <section className="bg-[#01060D] py-24 md:py-32 px-6 md:px-12 lg:px-20">
         <div className="max-w-4xl mx-auto">
-          <h1
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white leading-[1.1] mb-8"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-          >
-            PRESS &amp; MEDIA PLACEMENT SERVICES
-          </h1>
-
-          <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-lg leading-relaxed max-w-3xl">
-            Strategic press placements that build authority, control your
-            narrative, and position you as a recognized leader — powered by 25+
-            years of direct media relationships with the world&apos;s top
-            publications.
+          <p className="text-[#EE4223] font-[family-name:var(--font-inter)] text-sm uppercase tracking-widest font-semibold mb-5">
+            Press & Media Placement Services
           </p>
-        </div>
-      </section>
-
-      {/* ── Intro Section ── */}
-      <section className="bg-[#EE4223] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-4xl mx-auto">
-          <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white leading-tight mb-6"
-            style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
+          <h1
+            className="font-[family-name:var(--font-barlow)] font-black italic text-white leading-[1.05] mb-7"
+            style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)" }}
           >
             Don&apos;t chase publicity. Control it.
-          </h2>
-
-          <p className="font-[family-name:var(--font-inter)] text-white/90 text-lg leading-relaxed">
-            Most PR firms pitch journalists and hope for the best. We operate
-            differently. With 25+ years of direct media relationships, we offer
-            a strategic, guaranteed placement infrastructure — not a
-            pay-to-play gamble. Every placement is intentional, every headline is
-            controlled, and every article serves your long-term narrative.
+          </h1>
+          <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE]/90 text-lg leading-relaxed mb-8 max-w-3xl">
+            Our Press &amp; Media Placement service is a strategic, pay-to-play
+            media infrastructure designed for founders, CEOs, public figures,
+            investors, and brands who understand one truth:{" "}
+            <span className="text-[#EE4223] font-semibold">
+              Perception is reality — and narrative control is power.
+            </span>
           </p>
-        </div>
-      </section>
-
-      {/* ── What We Do Section ── */}
-      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-4xl mx-auto">
-          <h2
-            className="font-[family-name:var(--font-barlow)] font-bold text-[#EEEEEE] leading-tight mb-6"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
+          <Link
+            href="https://wa.me/971585131664"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-orange text-base"
           >
-            What We Do
-          </h2>
+            FREE 15 MIN CALL
+          </Link>
+        </div>
+      </section>
 
+      {/* ── What we do ── */}
+      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-[#EE4223] font-[family-name:var(--font-inter)] text-sm uppercase tracking-widest font-semibold mb-4">
+            What We Do
+          </p>
           <p className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-lg leading-relaxed">
-            Strategic placements in top-tier global media publications through
-            direct relationships, sponsored editorial access, and guaranteed
-            placements. We don&apos;t pitch and pray. We plan, place, and
-            control every aspect of your media coverage.
+            We strategically place our clients in top-tier global media
+            publications through direct media relationships, sponsored
+            editorial access, and guaranteed placements. Every story is
+            professionally written, positioned, and placed to shape authority,
+            credibility, and dominance in your industry.
           </p>
         </div>
       </section>
 
-      {/* ── Narrative Control Section ── */}
-      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 rounded-xl overflow-hidden">
-          {/* Left panel */}
-          <div className="bg-[#0A0F1A] p-10 md:p-14 flex items-center">
-            <h2
-              className="font-[family-name:var(--font-barlow)] font-black italic text-[#EEEEEE] leading-tight"
-              style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-            >
-              Narrative Control, Not Exposure
-            </h2>
-          </div>
-
-          {/* Right panel */}
-          <div className="bg-[#0F1520] p-10 md:p-14">
-            <ul className="space-y-5">
-              {narrativeControlItems.map((item) => (
-                <li key={item} className="flex items-center gap-4">
-                  <span className="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-[#EE4223]" />
-                  <span className="font-[family-name:var(--font-inter)] text-[#EEEEEE] text-lg">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Guaranteed Placement Section ── */}
+      {/* ── Narrative Control ── */}
       <section className="bg-[#EE4223] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-white leading-tight mb-10"
+            className="font-[family-name:var(--font-barlow)] font-black italic text-white text-center leading-tight mb-3"
             style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
           >
-            GUARANTEED MEDIA PLACEMENT
+            NARRATIVE CONTROL, NOT EXPOSURE
           </h2>
+          <p className="font-[family-name:var(--font-inter)] text-white/90 text-base text-center mb-12 max-w-2xl mx-auto">
+            Unlike traditional PR agencies that &quot;pitch and pray,&quot;
+            FAME by Sheeraz:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {narrativeControls.map((item) => (
+              <div
+                key={item}
+                className="bg-[#01060D] rounded-xl p-6 flex items-center justify-center text-center min-h-[100px]"
+              >
+                <p className="font-[family-name:var(--font-barlow)] font-bold text-white text-sm leading-tight">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <ul className="space-y-4">
-            {guaranteedItems.map((item) => (
-              <li key={item} className="flex items-center gap-4">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-white flex items-center justify-center">
+      {/* ── Guaranteed Placement ── */}
+      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20 border-t border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <h2
+            className="font-[family-name:var(--font-barlow)] font-bold text-[#EEEEEE] leading-tight mb-3"
+            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
+          >
+            Guaranteed Media Placement (Pay-to-Play)
+          </h2>
+          <p className="font-[family-name:var(--font-inter)] text-[#8794A7] text-base mb-10">
+            All placements operate on a pay-to-play basis, ensuring:
+          </p>
+          <ul className="space-y-3">
+            {guarantees.map((g) => (
+              <li
+                key={g}
+                className="flex items-center gap-3 bg-[#0A0F1A] border border-[#1a2235] rounded-lg px-6 py-4"
+              >
+                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#EE4223] flex items-center justify-center">
                   <svg
-                    className="w-3.5 h-3.5 text-[#EE4223]"
+                    className="w-4 h-4 text-white"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={3}
@@ -177,8 +157,8 @@ export default function PRServicesPage() {
                     />
                   </svg>
                 </span>
-                <span className="font-[family-name:var(--font-inter)] text-white text-lg font-medium">
-                  {item}
+                <span className="font-[family-name:var(--font-inter)] text-white text-base font-medium">
+                  {g}
                 </span>
               </li>
             ))}
@@ -186,27 +166,28 @@ export default function PRServicesPage() {
         </div>
       </section>
 
-      {/* ── Why FAME Section ── */}
-      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto">
+      {/* ── Indexed Authority ── */}
+      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20 border-t border-white/5">
+        <div className="max-w-5xl mx-auto">
           <h2
-            className="font-[family-name:var(--font-barlow)] font-black italic text-[#EEEEEE] text-center leading-tight mb-14"
+            className="font-[family-name:var(--font-barlow)] font-bold text-[#EEEEEE] leading-tight mb-3"
             style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
           >
-            Who We Work With
+            Indexed Authority Across Google &amp; AI
           </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {audienceCards.map((card) => (
+          <p className="font-[family-name:var(--font-inter)] text-[#8794A7] text-base mb-10 max-w-3xl">
+            Every placement designed to ensure your name, brand, or company
+            becomes the default narrative when investors, media, partners, or
+            the public search for you.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {indexedAuthority.map((a) => (
               <div
-                key={card.title}
-                className="bg-[#0A0F1A] border border-[#1a2235] rounded-xl p-6 hover:border-[#EE4223]/40 transition-colors"
+                key={a}
+                className="bg-[#0A0F1A] border border-[#1a2235] rounded-xl p-6"
               >
-                <h3 className="font-[family-name:var(--font-barlow)] font-bold text-white text-lg mb-2">
-                  {card.title}
-                </h3>
-                <p className="font-[family-name:var(--font-inter)] text-[#8794A7] text-sm leading-relaxed">
-                  {card.description}
+                <p className="font-[family-name:var(--font-inter)] text-white text-base leading-relaxed">
+                  {a}
                 </p>
               </div>
             ))}
@@ -214,7 +195,65 @@ export default function PRServicesPage() {
         </div>
       </section>
 
-      {/* ── CTA Section ── */}
+      {/* ── Why you need FAME ── */}
+      <section className="bg-[#EE4223] py-20 px-6 md:px-12 lg:px-20">
+        <div className="max-w-5xl mx-auto">
+          <h2
+            className="font-[family-name:var(--font-barlow)] font-black italic text-white leading-tight mb-3"
+            style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
+          >
+            Why you need FAME
+          </h2>
+          <p className="font-[family-name:var(--font-inter)] text-white/90 text-lg mb-10">
+            Boost your valuation, reputation and leverage.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {whoNeeds.map((w) => (
+              <div
+                key={w}
+                className="bg-[#01060D] rounded-xl px-6 py-5"
+              >
+                <p className="font-[family-name:var(--font-barlow)] font-bold text-white text-lg">
+                  {w}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAME Advantage ── */}
+      <section className="bg-[#01060D] py-20 px-6 md:px-12 lg:px-20 border-t border-white/5">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-[#EE4223] font-[family-name:var(--font-inter)] text-sm uppercase tracking-widest font-semibold mb-3">
+            The FAME Advantage
+          </p>
+          <h2
+            className="font-[family-name:var(--font-barlow)] font-black italic text-[#EEEEEE] leading-tight mb-5"
+            style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
+          >
+            25+ Years in the business of attention
+          </h2>
+          <p className="font-[family-name:var(--font-inter)] text-[#8794A7] text-base mb-12 max-w-3xl mx-auto">
+            With over two decades of global media strategy experience, FAME by
+            Sheeraz operates at the intersection of:
+          </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {advantagePillars.map((p) => (
+              <div
+                key={p}
+                className="bg-[#0A0F1A] border border-[#1a2235] rounded-xl p-6"
+              >
+                <p className="font-[family-name:var(--font-barlow)] font-bold text-[#EE4223] text-base">
+                  {p}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
       <section className="bg-[#EE4223] py-20 px-6 md:px-12 lg:px-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2
@@ -223,7 +262,6 @@ export default function PRServicesPage() {
           >
             BOOK A FREE CONSULTATION CALL
           </h2>
-
           <Link
             href="https://wa.me/971585131664"
             target="_blank"
